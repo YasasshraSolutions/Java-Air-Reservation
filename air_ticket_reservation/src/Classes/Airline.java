@@ -59,40 +59,35 @@ public class Airline {
      * insert or update if not exist
      */
     public boolean save(){
-        if(this.exist == false)
-        {
-            try {
-                String sql="INSERT INTO `airline`(`airline_ID`, `airline_name`, `origin`, `active`) VALUES (?,?,?,?)";
-                PreparedStatement pst = conn.prepareStatement(sql);
-                pst.setString(1, this.airline_ID);
-                pst.setString(2, this.airline_name);
-                pst.setString(3, this.origin);
-                pst.setBoolean(4, this.active);
-                pst.executeUpdate();
-                this.exist = true;
-                return true;
-            } catch (SQLException e) {
-                if(e.getErrorCode() == 1062){
-                    System.out.println("MYSQL_DUPLICATE_PK");
-                    return false;
-                }
-                System.out.println(e);
-                return false;
+        try {
+            String sql="INSERT INTO `airline`(`airline_ID`, `airline_name`, `origin`, `active`) VALUES (?,?,?,?)";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, this.airline_ID);
+            pst.setString(2, this.airline_name);
+            pst.setString(3, this.origin);
+            pst.setBoolean(4, this.active);
+            pst.executeUpdate();
+            this.exist = true;
+            return true;
+        } catch (SQLException e) {
+            if(e.getErrorCode() == 1062){
+                try {
+                        String sql="UPDATE `airline` SET `airline_name`=?,`origin`=?,`active`=? WHERE `airline_ID`=?";
+                        PreparedStatement pst = conn.prepareStatement(sql);
+                        pst.setString(1, this.airline_name);
+                        pst.setString(2, this.origin);
+                        pst.setBoolean(3, this.active);
+                        pst.setString(4, this.airline_ID);
+                        pst.executeUpdate();
+                        this.exist = true;
+                        return true; 
+                    } catch (SQLException e2) {
+                        System.out.println("Error : while excicuting prepared statement");
+                        return false;
+                    }
             }
-        }else{
-            try {
-                String sql="UPDATE `airline` SET `airline_name`=?,`origin`=?,`active`=? WHERE `airline_ID`=?";
-                PreparedStatement pst = conn.prepareStatement(sql);
-                pst.setString(1, this.airline_name);
-                pst.setString(2, this.origin);
-                pst.setBoolean(3, this.active);
-                pst.setString(4, this.airline_ID);
-                pst.executeUpdate();
-                return true; 
-            } catch (SQLException e) {
-                System.out.println("Error : while excicuting prepared statement");
-                return false;
-            }
+            System.out.println(e);
+            return false;
         }
     }
     
