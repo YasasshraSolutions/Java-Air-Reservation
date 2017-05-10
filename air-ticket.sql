@@ -12,14 +12,6 @@ CREATE TABLE flight_leg(
 	leg_type CHAR(2) NOT NULL
 );
 
-
--- CREATE TABLE miles_program(
--- 	programID  int NOT NULL PRIMARY KEY,
--- 	Pdescription  VARCHAR (50) NOT NULL,
--- 	Ptype VARCHAR (2)NOT NULL
--- );
-
-
 CREATE TABLE airline(
 	airline_ID VARCHAR (20) NOT NULL PRIMARY KEY,
 	airline_name VARCHAR (15) UNIQUE NOT NULL,
@@ -68,13 +60,6 @@ CREATE TABLE tickets(
 	pass_no CHAR (10) NOT NULL ,
 	leg_no VARCHAR (25)	NOT NULL
 );
-
--- CREATE TABLE airline_milesprogram(	
--- 	airline_ID VARCHAR (20) NOT NULL ,
--- 	programID int NOT NULL ,
--- 	PRIMARY KEY(airline_ID,programID)
--- 	);
-
 
 CREATE TABLE assigned_to(
 	leg_no VARCHAR (25) NOT NULL,
