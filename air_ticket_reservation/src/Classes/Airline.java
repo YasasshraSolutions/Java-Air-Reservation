@@ -26,13 +26,14 @@ public class Airline {
      */
     public  Airline(String ID){
         conn = DBConnect.connect();
+        PreparedStatement pst = null;
         try {
-            String sql = "SELECT * FROM airline where airline_ID=?";
-            PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setString(1, ID);
-            ResultSet rs = pst.executeQuery(sql);
-            if (!rs.isBeforeFirst() ) {    
-                System.out.println("No data"); 
+            String sql = "SELECT * FROM airline where airline_ID = ?";
+            pst=conn.prepareStatement(sql);
+            pst.setString(1,ID);
+            ResultSet rs;
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst() ) {     
                 return;
             } 
             while (rs.next()) {
@@ -44,6 +45,7 @@ public class Airline {
             }
         } catch (SQLException e) {
             System.out.println("Error : while excicuting prepared statement");
+            System.out.println(e);
         }
     }
     
@@ -66,7 +68,7 @@ public class Airline {
                 pst.setString(2, this.airline_name);
                 pst.setString(3, this.origin);
                 pst.setBoolean(4, this.active);
-                ResultSet rs = pst.executeQuery(sql);
+                pst.executeUpdate();
                 this.exist = true;
                 return true;
             } catch (SQLException e) {
@@ -74,6 +76,7 @@ public class Airline {
                     System.out.println("MYSQL_DUPLICATE_PK");
                     return false;
                 }
+                System.out.println(e);
                 return false;
             }
         }else{
@@ -84,7 +87,7 @@ public class Airline {
                 pst.setString(2, this.origin);
                 pst.setBoolean(3, this.active);
                 pst.setString(4, this.airline_ID);
-                ResultSet rs = pst.executeQuery(sql);
+                pst.executeUpdate();
                 return true; 
             } catch (SQLException e) {
                 System.out.println("Error : while excicuting prepared statement");
