@@ -7,7 +7,7 @@ package Classes;
 
 /**
  *
- * @author Chaithika
+ * @author Shaveen Dimasha
  */
 public class Passenger {
     

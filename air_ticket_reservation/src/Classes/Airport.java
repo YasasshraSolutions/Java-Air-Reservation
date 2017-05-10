@@ -7,7 +7,7 @@ package Classes;
 
 /**
  *
- * @author Chaithika
+ * @author Manash Gurudeniya
  */
 public class Airport {
     

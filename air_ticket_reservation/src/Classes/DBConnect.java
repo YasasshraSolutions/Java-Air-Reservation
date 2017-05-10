@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 
 /**
  *
- * @author Chaithika Stephen
+ * @author Buddhi Abeyratne
  */
 public class DBConnect {
  
