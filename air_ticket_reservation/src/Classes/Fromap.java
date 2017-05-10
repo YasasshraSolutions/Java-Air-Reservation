@@ -5,6 +5,8 @@
  */
 package Classes;
 
+import java.util.Date;
+
 /**
  *
  * @author Chaithika
@@ -12,6 +14,8 @@ package Classes;
 public class Fromap {
     private String leg_no;
     private String airportID;
+    private Date departure_time;
+    private Date arrival_time;
 
     /**
      * @return the leg_no
@@ -39,6 +43,34 @@ public class Fromap {
      */
     public void setAirportID(String airportID) {
         this.airportID = airportID;
+    }
+
+    /**
+     * @return the departure_time
+     */
+    public Date getDeparture_time() {
+        return departure_time;
+    }
+
+    /**
+     * @param departure_time the departure_time to set
+     */
+    public void setDeparture_time(Date departure_time) {
+        this.departure_time = departure_time;
+    }
+
+    /**
+     * @return the arrival_time
+     */
+    public Date getArrival_time() {
+        return arrival_time;
+    }
+
+    /**
+     * @param arrival_time the arrival_time to set
+     */
+    public void setArrival_time(Date arrival_time) {
+        this.arrival_time = arrival_time;
     }
     
     
