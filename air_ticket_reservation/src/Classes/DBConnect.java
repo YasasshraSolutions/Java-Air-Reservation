@@ -22,6 +22,7 @@ public class DBConnect {
             Class.forName("com.mysql.jdbc.Driver");
             conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/air-ticke","root","");
         } catch (Exception e) {
+            System.out.println("connection error");
         }
         return conn;
     }
