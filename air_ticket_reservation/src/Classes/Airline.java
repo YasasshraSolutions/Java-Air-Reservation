@@ -8,42 +8,89 @@ import Classes.DBConnect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 /**
  *
  * @author Chaithika Stephen
  */
 public class Airline {
     
-    private String airline_ID;
-    private String airline_name;
-    private String origin;
-    private boolean active;
+    private String airline_ID=null;
+    private String airline_name=null;
+    private String origin=null;
+    private boolean active=false;
+    public boolean exist = false;
     private Connection conn =null;
     /**
      * Get object for a given id
      */
-    Airline(String ID){
+    public  Airline(String ID){
         conn = DBConnect.connect();
         try {
             String sql = "SELECT * FROM airline where airline_ID=?";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, ID);
             ResultSet rs = pst.executeQuery(sql);
+            if (!rs.isBeforeFirst() ) {    
+                System.out.println("No data"); 
+                return;
+            } 
             while (rs.next()) {
                     this.airline_ID = rs.getString("airline_ID");
                     this.airline_name = rs.getString("airline_name");
                     this.origin = rs.getString("origin");
                     this.active  = rs.getBoolean("active");
+                    this.exist = true;
             }
-        } catch (Exception e) {
-            System.out.println("Error : could  not find object");
+        } catch (SQLException e) {
+            System.out.println("Error : while excicuting prepared statement");
         }
     }
     
     /**
      * Default constructor
      */
-    Airline(){
+    public Airline(){
+        conn = DBConnect.connect();
+    }
+    /**
+     * insert or update if not exist
+     */
+    public boolean save(){
+        if(this.exist == false)
+        {
+            try {
+                String sql="INSERT INTO `airline`(`airline_ID`, `airline_name`, `origin`, `active`) VALUES (?,?,?,?)";
+                PreparedStatement pst = conn.prepareStatement(sql);
+                pst.setString(1, this.airline_ID);
+                pst.setString(2, this.airline_name);
+                pst.setString(3, this.origin);
+                pst.setBoolean(4, this.active);
+                ResultSet rs = pst.executeQuery(sql);
+                this.exist = true;
+                return true;
+            } catch (SQLException e) {
+                if(e.getErrorCode() == 1062){
+                    System.out.println("MYSQL_DUPLICATE_PK");
+                    return false;
+                }
+                return false;
+            }
+        }else{
+            try {
+                String sql="UPDATE `airline` SET `airline_name`=?,`origin`=?,`active`=? WHERE `airline_ID`=?";
+                PreparedStatement pst = conn.prepareStatement(sql);
+                pst.setString(1, this.airline_name);
+                pst.setString(2, this.origin);
+                pst.setBoolean(3, this.active);
+                pst.setString(4, this.airline_ID);
+                ResultSet rs = pst.executeQuery(sql);
+                return true; 
+            } catch (SQLException e) {
+                System.out.println("Error : while excicuting prepared statement");
+                return false;
+            }
+        }
     }
     
     /**
