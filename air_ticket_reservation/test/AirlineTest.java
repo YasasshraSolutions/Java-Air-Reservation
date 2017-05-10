@@ -18,7 +18,7 @@ public class AirlineTest {
         // TODO code application logic here
         Airline a = new Airline();
         a.setAirline_ID("LK-01");
-        a.setAirline_name("Sri Lankan");
+        a.setAirline_name("Sri Lankans ");
         a.setOrigin("Sri Lanka");
         a.setActive(true);
         
