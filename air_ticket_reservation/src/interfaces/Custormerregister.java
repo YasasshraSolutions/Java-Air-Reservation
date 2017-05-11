@@ -309,7 +309,7 @@ public class Custormerregister extends javax.swing.JInternalFrame {
                             .addComponent(jButton3))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -464,24 +464,18 @@ public class Custormerregister extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPasswordField1KeyTyped
 
     private void jPasswordField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField2KeyTyped
-        // TODO add your handling code here:
-        
-        if(!Arrays.equals(jPasswordField1.getPassword(), jPasswordField2.getPassword()))
+      if(!(new String(jPasswordField1.getPassword()).equals(new String(jPasswordField2.getPassword()))))
         {
-            jLabel13.setVisible(false);
-        } else {
             jLabel13.setVisible(true);
-        }
+        } else {
+            jLabel13.setVisible(false);
+        }  
+// TODO add your handling code here:
         
     }//GEN-LAST:event_jPasswordField2KeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      if(!Arrays.equals(jPasswordField1.getPassword(), jPasswordField2.getPassword()))
-        {
-            jLabel13.setVisible(false);
-        } else {
-            jLabel13.setVisible(true);
-        }
+      
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
