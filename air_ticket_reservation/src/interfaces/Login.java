@@ -184,7 +184,7 @@ public class Login extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         JDesktopPane desktopPane = getDesktopPane();
-        Custregister cr =new Custregister();
+        Custormerregister cr =new Custormerregister();
         desktopPane.add(cr);
         cr.setVisible(true);   
         this.dispose();
