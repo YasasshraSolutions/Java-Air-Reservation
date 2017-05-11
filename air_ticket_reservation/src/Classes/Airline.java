@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 /**
  *
- * @author Chaithika Stephen
+ * @author Manash Gurudeniya
  */
 public class Airline {
     
