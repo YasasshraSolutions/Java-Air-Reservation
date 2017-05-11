@@ -16,15 +16,15 @@ import java.sql.SQLException;
  * @author Shaveen Dimasha
  */
 public class Passenger {
-    private String tel;
-    private String paddress;
-    private String fname;
-    private String lname;
-    private String pass_no;
-    private String password;
-    private String dob;
-    private boolean active;
-    private Connection conn;
+    private String tel = null;
+    private String paddress = null;
+    private String fname = null;
+    private String lname = null;
+    private String pass_no = null;
+    private String password = null;
+    private String dob = null;
+    private boolean active = false;
+    private Connection conn = null;
     public boolean exist = false;
     /**
      * default constructor
