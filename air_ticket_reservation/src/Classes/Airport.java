@@ -5,6 +5,10 @@
  */
 package Classes;
 
+import java.sql.Connection;
+import Classes.DBConnect;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 /**
  *
  * @author Manash Gurudeniya
@@ -16,7 +20,47 @@ public class Airport {
     private String apstate;
     private String country;
     private boolean active;
-
+    private Connection conn;
+    public boolean exist = false;
+    
+    /**
+     * default constructor
+     */
+    public Airport(){
+        conn = DBConnect.connect();
+    }
+    
+    /**
+     * constructor with an ID
+     */
+    public Airport(String aid){
+        conn = DBConnect.connect();
+        PreparedStatement pst = null;
+        try {
+            String sql = "SELECT * FROM `airport` WHERE `airportID`=?";
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, aid);
+            ResultSet rs;
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst() ) {     
+                return;
+            }
+            while(rs.next()){
+                this.airportID = rs.getString("airportID");
+                this.name = rs.getString("name");
+                this.city = rs.getString("city");
+                this.apstate = rs.getString("apstate");
+                this.country = rs.getString("country");
+                this.active = rs.getBoolean("active");
+                this.exist = true;
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error:"+e);
+        }
+    }
+    
+    
     /**
      * @return the airportID
      */
