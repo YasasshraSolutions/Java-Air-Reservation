@@ -5,6 +5,12 @@
  */
 package Classes;
 
+import Classes.DBConnect;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Shaveen Dimasha
@@ -18,6 +24,107 @@ public class Passenger {
     private String password;
     private String dob;
     private boolean active;
+    private Connection conn;
+    public boolean exist = false;
+    /**
+     * default constructor
+     */
+    public Passenger(){
+        conn = DBConnect.connect();
+    }
+    
+    /**
+     * constructor with the id
+     */
+    public  Passenger(String passNo){
+        conn = DBConnect.connect();
+        PreparedStatement pst = null;
+        try {
+            String sql = "SELECT * FROM `passenger` WHERE `pass_no`=?";
+            pst=conn.prepareStatement(sql);
+            pst.setString(1,passNo);
+            ResultSet rs;
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst() ) {     
+                return;
+            } 
+            while (rs.next()) {
+                    this.tel = rs.getString("tel");
+                    this.paddress = rs.getString("paddress");
+                    this.fname = rs.getString("fname");
+                    this.lname = rs.getString("lname");
+                    this.pass_no = rs.getString("pass_no");
+                    this.password = rs.getString("password");
+                    this.dob = rs.getString("dob");
+                    this.active  = rs.getBoolean("active");
+                    this.exist = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error : while excicuting prepared statement");
+            System.out.println(e);
+            System.out.println(e.getErrorCode());
+        }
+    }
+    
+    
+    /**
+     * public method to deactivate
+     */
+    public void deactivate(){
+        conn = DBConnect.connect();
+        PreparedStatement pst = null;
+        if(exist== true){
+                this.active= false;
+                this.save();
+        }
+        
+    }
+   
+    /**
+     * public method save
+     */
+    public boolean save(){
+        try {
+            String sql = "INSERT INTO `passenger`(`tel`, `paddress`, `fname`, `lname`, `pass_no`, `password`, `dob`, `active`) VALUES (?,?,?,?,?,?,?,?)";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, this.tel);
+            pst.setString(2, this.paddress);
+            pst.setString(3, this.fname);
+            pst.setString(4, this.lname);
+            pst.setString(5, this.pass_no);
+            pst.setString(6, this.password);
+            pst.setString(7, this.dob);
+            pst.setBoolean(8, this.active);
+            pst.executeUpdate();
+            this.exist = true;
+            return true;
+        } catch (SQLException e) {
+            if(e.getErrorCode() == 1062){
+                try {
+                    String sql="UPDATE `passenger` SET `tel`=?,`paddress`=?,`fname`=?,`lname`=?,`pass_no`=?,`password`=?,`dob`=?,`active`=? WHERE `pass_no` = ?";
+                    PreparedStatement pst = conn.prepareStatement(sql);
+                    pst.setString(1, this.tel);
+                    pst.setString(2, this.paddress);
+                    pst.setString(3, this.fname);
+                    pst.setString(4, this.lname);
+                    pst.setString(5, this.pass_no);
+                    pst.setString(6, this.password);
+                    pst.setString(7, this.dob);
+                    pst.setBoolean(8, this.active);
+                    pst.setString(9, this.pass_no);
+                    pst.executeUpdate();
+                    this.exist = true;
+                    return true;
+                    
+                } catch (SQLException e2) {
+                    System.out.println("Error : while excicuting prepared statement");
+                    return false;
+                }
+            }
+            return false;
+        }
+        
+    }
 
     /**
      * @return the tel
