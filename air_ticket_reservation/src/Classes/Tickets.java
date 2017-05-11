@@ -10,25 +10,12 @@ package Classes;
  * @author Chaithika
  */
 public class Tickets {
-    private String ticket_no;
+    
     private int seat_no;
     private float fair;
     private String pass_no;
     private String leg_no;
 
-    /**
-     * @return the ticket_no
-     */
-    public String getTicket_no() {
-        return ticket_no;
-    }
-
-    /**
-     * @param ticket_no the ticket_no to set
-     */
-    public void setTicket_no(String ticket_no) {
-        this.ticket_no = ticket_no;
-    }
 
     /**
      * @return the seat_no
