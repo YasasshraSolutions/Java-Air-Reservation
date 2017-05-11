@@ -32,7 +32,10 @@ public class FlightLeg {
       this.conn = DBConnect.connect();  
     }
     
-    
+    /**
+     * Constructor to auto load flight leg from db
+     * @param leg_no : primary key of Flight leg
+     */
     public FlightLeg(int leg_no)
     {
       this.conn = DBConnect.connect(); 
