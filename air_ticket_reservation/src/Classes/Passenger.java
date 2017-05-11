@@ -66,7 +66,32 @@ public class Passenger {
     }
     
     
-    
+    /**
+     * public method to deactivate
+     */
+    public void deactivate(){
+        conn = DBConnect.connect();
+        PreparedStatement pst = null;
+        try {
+            if(exist== true){
+                String sql1 = "UPDATE `passenger` SET `tel`=?,`paddress`=?,`fname`=?,`lname`=?,`pass_no`=?,`password`=?,`dob`=?,`active`=? WHERE `pass_no` = ?";
+                PreparedStatement pst1 = conn.prepareStatement(sql1);
+                pst.setString(1, this.tel);
+                pst.setString(2, this.paddress);
+                pst.setString(3, this.fname);
+                pst.setString(4, this.lname);
+                pst.setString(5, this.pass_no);
+                pst.setString(6, this.password);
+                pst.setString(7, this.dob);
+                pst.setBoolean(8, false);
+                pst.setString(9, this.pass_no);
+                pst.executeUpdate();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+   
     /**
      * public method save
      */
@@ -98,6 +123,7 @@ public class Passenger {
                     pst.setString(6, this.password);
                     pst.setString(7, this.dob);
                     pst.setBoolean(8, this.active);
+                    pst.setString(9, this.pass_no);
                     pst.executeUpdate();
                     this.exist = true;
                     return true;
