@@ -7,9 +7,10 @@ package Classes;
 
 /**
  *
- * @author Chaithika
+ * @author Buddhi Aberatne
  */
 public class Flight {
+    
     private String flight_no;
     private int max_seats;
     private String airline_id;
