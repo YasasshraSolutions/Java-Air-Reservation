@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  *
@@ -22,7 +23,7 @@ public class Passenger {
     private String lname = null;
     private String pass_no = null;
     private String password = null;
-    private String dob = null;
+    private Date dob = null;
     private boolean active = false;
     private Connection conn = null;
     public boolean exist = false;
@@ -55,7 +56,7 @@ public class Passenger {
                     this.lname = rs.getString("lname");
                     this.pass_no = rs.getString("pass_no");
                     this.password = rs.getString("password");
-                    this.dob = rs.getString("dob");
+                    this.dob = rs.getDate("dob");
                     this.active  = rs.getBoolean("active");
                     this.exist = true;
             }
@@ -93,7 +94,7 @@ public class Passenger {
             pst.setString(4, this.lname);
             pst.setString(5, this.pass_no);
             pst.setString(6, this.password);
-            pst.setString(7, this.dob);
+            pst.setDate(7, new java.sql.Date(this.dob.getTime()));
             pst.setBoolean(8, this.active);
             pst.executeUpdate();
             this.exist = true;
@@ -109,7 +110,7 @@ public class Passenger {
                     pst.setString(4, this.lname);
                     pst.setString(5, this.pass_no);
                     pst.setString(6, this.password);
-                    pst.setString(7, this.dob);
+                    pst.setDate(7, new java.sql.Date(this.dob.getTime()));
                     pst.setBoolean(8, this.active);
                     pst.setString(9, this.pass_no);
                     pst.executeUpdate();
@@ -213,14 +214,14 @@ public class Passenger {
     /**
      * @return the dob
      */
-    public String getDob() {
+    public Date getDob() {
         return dob;
     }
 
     /**
      * @param dob the dob to set
      */
-    public void setDob(String dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 
