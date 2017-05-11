@@ -40,7 +40,7 @@ public class Passenger {
         conn = DBConnect.connect();
         PreparedStatement pst = null;
         try {
-            String sql = "SELECT `tel`, `paddress`, `fname`, `lname`, `pass_no`, `password`, `dob`, `active` FROM `passenger` WHERE `pass_no`=?";
+            String sql = "SELECT * FROM `passenger` WHERE `pass_no`=?";
             pst=conn.prepareStatement(sql);
             pst.setString(1,passNo);
             ResultSet rs;
@@ -54,7 +54,7 @@ public class Passenger {
                     this.fname = rs.getString("fname");
                     this.lname = rs.getString("lname");
                     this.pass_no = rs.getString("pass_no");
-                    this.password = rs.getString("password`");
+                    this.password = rs.getString("password");
                     this.dob = rs.getString("dob");
                     this.active  = rs.getBoolean("active");
                     this.exist = true;
@@ -62,6 +62,7 @@ public class Passenger {
         } catch (SQLException e) {
             System.out.println("Error : while excicuting prepared statement");
             System.out.println(e);
+            System.out.println(e.getErrorCode());
         }
     }
     
