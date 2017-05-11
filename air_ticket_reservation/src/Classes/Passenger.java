@@ -7,6 +7,8 @@ package Classes;
 
 import Classes.DBConnect;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  *
@@ -22,7 +24,7 @@ public class Passenger {
     private String dob;
     private boolean active;
     private Connection conn;
-    
+    public boolean exist = false;
     /**
      * default constructor
      */
@@ -33,7 +35,47 @@ public class Passenger {
     /**
      * public method save
      */
-    
+    public boolean save(){
+        try {
+            String sql = "INSERT INTO `passenger`(`tel`, `paddress`, `fname`, `lname`, `pass_no`, `password`, `dob`, `active`) VALUES (?,?,?,?,?,?,?,?)";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, this.tel);
+            pst.setString(2, this.paddress);
+            pst.setString(3, this.fname);
+            pst.setString(4, this.lname);
+            pst.setString(5, this.pass_no);
+            pst.setString(6, this.password);
+            pst.setString(7, this.dob);
+            pst.setBoolean(8, this.active);
+            pst.executeUpdate();
+            this.exist = true;
+            return true;
+        } catch (SQLException e) {
+            if(e.getErrorCode() == 1062){
+                try {
+                    String sql="UPDATE `passenger` SET `tel`=?,`paddress`=?,`fname`=?,`lname`=?,`pass_no`=?,`password`=?,`dob`=?,`active`=? WHERE `pass_no` = ?";
+                    PreparedStatement pst = conn.prepareStatement(sql);
+                    pst.setString(1, this.tel);
+                    pst.setString(2, this.paddress);
+                    pst.setString(3, this.fname);
+                    pst.setString(4, this.lname);
+                    pst.setString(5, this.pass_no);
+                    pst.setString(6, this.password);
+                    pst.setString(7, this.dob);
+                    pst.setBoolean(8, this.active);
+                    pst.executeUpdate();
+                    this.exist = true;
+                    return true;
+                    
+                } catch (SQLException e2) {
+                    System.out.println("Error : while excicuting prepared statement");
+                    return false;
+                }
+            }
+            return false;
+        }
+        
+    }
 
     /**
      * @return the tel
