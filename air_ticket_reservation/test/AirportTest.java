@@ -17,14 +17,14 @@ public class AirportTest {
     public static void main(String[] args) {
         // TODO code application logic here
         Airport a = new Airport();
-        a.setAirportID("A123");
+        a.setAirportID("A126");
         a.setName("CMB");
         a.setApstate("Colombo");
         a.setCity("Katunayake");
         a.setCountry("SL");
         a.setActive(true);
         
-        Airport a1 = new Airport("A123");
+        Airport a1 = new Airport("A126");
         if(a1.exist)
             System.out.println("Available");
         else
@@ -32,8 +32,8 @@ public class AirportTest {
         
         a.save();
         
-        Airport a2 = new Airport("A123");
-        if(a1.exist)
+        Airport a2 = new Airport("A126");
+        if(a2.exist)
             System.out.println("Available");
         else
             System.out.println("Aul kollo nane");
