@@ -9,17 +9,18 @@ import java.sql.Connection;
 import Classes.DBConnect;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 /**
  *
  * @author Manash Gurudeniya
  */
 public class Airport {
-    private String airportID;
-    private String name;
-    private String city;
-    private String apstate;
-    private String country;
-    private boolean active;
+    private String airportID = null;
+    private String name = null;
+    private String city = null;
+    private String apstate = null;
+    private String country = null;
+    private boolean active = false;
     private Connection conn;
     public boolean exist = false;
     
@@ -55,11 +56,65 @@ public class Airport {
                 this.exist = true;
             }
             
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error:"+e);
+            
         }
     }
     
+    /**
+     * save method
+     */
+    public boolean save(){
+        try {
+            String sql = "INSERT INTO `airport`(`airportID`, `name`, `city`, `apstate`, `country`, `active`) VALUES (?,?,?,?,?,?)";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, this.airportID);
+            pst.setString(2, this.name);
+            pst.setString(3, this.city);
+            pst.setString(4, this.apstate);
+            pst.setString(5, this.country);
+            pst.setBoolean(6, this.active);
+            pst.executeUpdate();
+            this.exist = true;
+            return true;
+            
+        } catch (SQLException e) {
+            if(e.getErrorCode() == 1062){
+                try {
+                    String sql = "UPDATE `airport` SET `airportID`=?,`name`=?,`city`=?,`apstate`=?,`country`=?,`active`=? WHERE `airportID` = ?";
+                    PreparedStatement pst = conn.prepareStatement(sql);
+                    pst.setString(1, this.airportID);
+                    pst.setString(2, this.name);
+                    pst.setString(3, this.city);
+                    pst.setString(4, this.apstate);
+                    pst.setString(5, this.country);
+                    pst.setBoolean(6, this.active);
+                    pst.setString(7, this.airportID);
+                    pst.executeUpdate();
+                    this.exist = true;
+                    return true;
+                } catch (SQLException e1) {
+                    System.out.println("Error"+e1);
+                    return false;
+                }
+            }
+            return false;
+        }
+    }
+    
+    /**
+     * public method to deactivate
+     */
+    public void deactivate(){
+        conn = DBConnect.connect();
+        PreparedStatement pst = null;
+        if(exist== true){
+                this.active= false;
+                this.save();
+        }
+        
+    }
     
     /**
      * @return the airportID
