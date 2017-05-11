@@ -25,8 +25,11 @@ public class FlightLeg {
     private Date arival_time = null;
     private String flight_no = null ;
     private Connection conn=null;
+    public boolean exist  = false;
     
-    
+    /**
+     * Default constructor
+     */
     public FlightLeg()
     {
       this.conn = DBConnect.connect();  
@@ -57,6 +60,7 @@ public class FlightLeg {
                 this.departure_time = rs.getDate("departure_time");
                 this.arival_time = rs.getDate("departure_time");
                 this.flight_no = rs.getString("flight_no");
+                this.exist = true;
             }
         } catch (SQLException e) {
             System.out.println("Error : while excicuting prepared statement");

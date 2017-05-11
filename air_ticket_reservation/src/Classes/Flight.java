@@ -5,17 +5,93 @@
  */
 package Classes;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Buddhi Aberatne
  */
 public class Flight {
     
-    private String flight_no;
-    private int max_seats;
-    private String airline_id;
-    private boolean active;
-
+    private String flight_no = null;
+    private int max_seats = 0;
+    private String airline_ID = null;
+    private boolean active = false;
+    private Connection conn = null;
+    public boolean exist = false;
+    
+    /**
+     * Added default constructor 
+     */
+    public Flight()
+    {
+        this.conn = DBConnect.connect();
+    }
+    
+    /**
+     * Constructor to auto load flight details from db
+     * @param flight_no 
+     */
+    public Flight(String flight_no )
+    {
+        this.conn = DBConnect.connect();
+        PreparedStatement pst = null;
+        try {
+            String sql = "SELECT * FROM `flight` WHERE `flight_no` = ?";
+            pst=conn.prepareStatement(sql);
+            pst.setString(1,flight_no);
+            ResultSet rs;
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst() ) {     
+                return;
+            } 
+            while (rs.next()) {
+                this.flight_no = rs.getString("flight_no");
+                this.exist = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error : while excicuting prepared statement");
+            System.out.println(e);
+        }
+    }
+    
+        public boolean save(){
+        try {
+            String sql = "INSERT INTO `flight`(`flight_no`, `max_seats`, `airline_ID`, `active`) VALUES (?,?,?,?)";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1,this.flight_no);
+            pst.setInt(2, this.max_seats);
+            pst.setString(3,this.airline_ID);
+            pst.setBoolean(4,this.active);
+            pst.executeUpdate();
+            this.exist = true;
+            return true;
+        } catch (SQLException e) {
+            if(e.getErrorCode() == 1062){
+                try {
+                    String sql="UPDATE `flight` SET `max_seats`=?,`airline_ID`=?,`active`=? WHERE `flight_no` = ?";
+                    PreparedStatement pst = conn.prepareStatement(sql);
+                    pst.setInt(1, this.max_seats);
+                    pst.setString(2,this.airline_ID);
+                    pst.setBoolean(3,this.active);
+                    pst.setString(4,this.flight_no);
+                    pst.executeUpdate();
+                    this.exist = true;
+                    return true;
+                    
+                } catch (SQLException e2) {
+                    System.out.println("Error : while excicuting prepared statement");
+                    return false;
+                }
+            }
+            return false;
+        }
+        
+    }
+    
     /**
      * @return the flight_no
      */
@@ -48,14 +124,14 @@ public class Flight {
      * @return the airline_id
      */
     public String getAirline_id() {
-        return airline_id;
+        return airline_ID;
     }
 
     /**
      * @param airline_id the airline_id to set
      */
     public void setAirline_id(String airline_id) {
-        this.airline_id = airline_id;
+        this.airline_ID = airline_id;
     }
 
     /**
