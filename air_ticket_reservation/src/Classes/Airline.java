@@ -21,8 +21,10 @@ public class Airline {
     private boolean active=false;
     public boolean exist = false;
     private Connection conn =null;
+    
     /**
-     * Get object for a given id
+     *  Get object for a given id
+     * @param ID : Airline Id 
      */
     public  Airline(String ID){
         this.conn = DBConnect.connect();
