@@ -18,12 +18,12 @@ import java.util.Date;
 public class FlightLeg {
     
     private int leg_no;
-    private String leg_type;
-    private String from_aID;
-    private String to_aID;
-    private Date departure_time;
-    private Date arival_time;
-    private String flight_no;
+    private String leg_type = null;
+    private String from_aID = null;
+    private String to_aID = null;
+    private Date departure_time = null;
+    private Date arival_time = null;
+    private String flight_no = null ;
     private Connection conn=null;
     
     
