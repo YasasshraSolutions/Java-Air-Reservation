@@ -6,6 +6,9 @@
 package Classes;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 /**
@@ -33,7 +36,29 @@ public class FlightLeg {
     public FlightLeg(int leg_no)
     {
       this.conn = DBConnect.connect(); 
-      
+      PreparedStatement pst = null;
+        try {
+            String sql = "SELECT * FROM `flight_leg` WHERE `leg_no` = ?";
+            pst=conn.prepareStatement(sql);
+            pst.setInt(1,leg_no);
+            ResultSet rs;
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst() ) {     
+                return;
+            } 
+            while (rs.next()) {
+                this.leg_no = rs.getInt("leg_no");
+                this.leg_type = rs.getString("leg_type");
+                this.from_aID = rs.getString("from_aID");
+                this.to_aID = rs.getString("to_aID");
+                this.departure_time = rs.getDate("departure_time");
+                this.arival_time = rs.getDate("departure_time");
+                this.flight_no = rs.getString("flight_no");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error : while excicuting prepared statement");
+            System.out.println(e);
+        }
     }
     
     /**
