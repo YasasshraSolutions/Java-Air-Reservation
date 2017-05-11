@@ -21,11 +21,13 @@ public class Airline {
     private boolean active=false;
     public boolean exist = false;
     private Connection conn =null;
+    
     /**
-     * Get object for a given id
+     *  Get object for a given id
+     * @param ID : Airline Id 
      */
     public  Airline(String ID){
-        conn = DBConnect.connect();
+        this.conn = DBConnect.connect();
         PreparedStatement pst = null;
         try {
             String sql = "SELECT * FROM airline where airline_ID = ?";
@@ -53,7 +55,7 @@ public class Airline {
      * Default constructor
      */
     public Airline(){
-        conn = DBConnect.connect();
+        this.conn = DBConnect.connect();
     }
     /**
      * insert or update if not exist
