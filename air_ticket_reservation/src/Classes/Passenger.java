@@ -5,6 +5,9 @@
  */
 package Classes;
 
+import Classes.DBConnect;
+import java.sql.Connection;
+
 /**
  *
  * @author Shaveen Dimasha
@@ -18,6 +21,19 @@ public class Passenger {
     private String password;
     private String dob;
     private boolean active;
+    private Connection conn;
+    
+    /**
+     * default constructor
+     */
+    public Passenger(){
+        conn = DBConnect.connect();
+    }
+    
+    /**
+     * public method save
+     */
+    
 
     /**
      * @return the tel
