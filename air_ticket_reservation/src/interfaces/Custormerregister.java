@@ -495,7 +495,7 @@ public class Custormerregister extends javax.swing.JInternalFrame {
             datedob = df2.parse(dob);
             String pass_no = jTextField4.getText();
             char passwrd[] = jPasswordField1.getPassword();
-            String password = Arrays.toString(passwrd);
+            String password = new String(passwrd);
             
             if(!Arrays.equals(jPasswordField1.getPassword(), jPasswordField2.getPassword()))
             {
