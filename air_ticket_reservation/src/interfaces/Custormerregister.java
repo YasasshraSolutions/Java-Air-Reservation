@@ -477,11 +477,40 @@ public class Custormerregister extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPasswordField2KeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      if(!Arrays.equals(jPasswordField1.getPassword(), jPasswordField2.getPassword()))
+        
+        String fname = jTextField8.getText();
+        String lname = jTextField2.getText();
+        String address = jTextField3.getText();
+        String contact = jTextField1.getText();
+        String day = jTextField5.getText();
+        String month = jTextField6.getText();
+        String year = jTextField7.getText();
+        String dob = year+"/"+month+"/"+day;
+        String pass_no = jTextField4.getText();
+        char passwrd[] = jPasswordField1.getPassword();
+        String password = passwrd.toString();
+       
+        if(!Arrays.equals(jPasswordField1.getPassword(), jPasswordField2.getPassword()))
         {
             jLabel13.setVisible(false);
         } else {
             jLabel13.setVisible(true);
+        }
+        
+        Passenger p1 = new Passenger();
+        p1.setFname(fname);
+        p1.setLname(lname);
+        p1.setPaddress(address);
+        p1.setTel(contact);
+        p1.setDob(dob);
+        p1.setPass_no(pass_no);
+        p1.setPassword(password);
+        p1.setActive(true);
+        
+        p1.save();
+        if(p1.save())
+        {
+            System.out.println("Saved Successfully");
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
