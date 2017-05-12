@@ -9,6 +9,7 @@
  * @author Chaithika
  */
 import Classes.Passenger;
+import java.util.Date;
 public class PassengerTest {
 
     /**
@@ -18,7 +19,8 @@ public class PassengerTest {
         // TODO code application logic here
         Passenger p1 = new Passenger();
         p1.setActive(true);
-        p1.setDob("2001/10/21");
+        Date d = new Date();
+        p1.setDob(d);
         p1.setFname("Vinodh");
         p1.setLname("Padmasiri");
         p1.setPaddress("Colombo");
