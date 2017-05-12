@@ -103,7 +103,7 @@ public class Airport {
         }
     }
     
-    public ResultSet getALl()
+    public ResultSet getAll()
     {
         PreparedStatement pst;
         try {
