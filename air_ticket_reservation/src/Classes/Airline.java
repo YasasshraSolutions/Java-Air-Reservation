@@ -28,7 +28,7 @@ public class Airline {
      */
     public  Airline(String ID){
         this.conn = DBConnect.connect();
-        PreparedStatement pst = null;
+        PreparedStatement pst;
         try {
             String sql = "SELECT * FROM airline where airline_ID = ?";
             pst=conn.prepareStatement(sql);
@@ -97,7 +97,7 @@ public class Airline {
     
     public ResultSet getALl()
     {
-        PreparedStatement pst = null;
+        PreparedStatement pst;
         try {
             String sql = "SELECT * FROM airline";
             pst=this.conn.prepareStatement(sql);
