@@ -59,6 +59,7 @@ public class Airline {
     }
     /**
      * insert or update if not exist
+     * @return boolean success 
      */
     public boolean save(){
         try {
@@ -90,6 +91,23 @@ public class Airline {
             }
             System.out.println(e);
             return false;
+        }
+    }
+    
+    
+    public ResultSet getALl()
+    {
+        PreparedStatement pst = null;
+        try {
+            String sql = "SELECT * FROM airline";
+            pst=this.conn.prepareStatement(sql);
+            ResultSet rs;
+            rs = pst.executeQuery();  
+            return rs;            
+        } catch (SQLException e) {
+            System.out.println("Error : while excicuting prepared statement");
+            System.out.println(e);
+            return null;
         }
     }
     
