@@ -119,7 +119,7 @@ public class Airport {
         }
     }
     /**
-     * public method to deactivate
+     * public method to deactivate 
      */
     public void deactivate(){
         conn = DBConnect.connect();
