@@ -103,6 +103,21 @@ public class Airport {
         }
     }
     
+    public ResultSet getALl()
+    {
+        PreparedStatement pst;
+        try {
+            String sql = "SELECT * FROM `airport`";
+            pst=this.conn.prepareStatement(sql);
+            ResultSet rs;
+            rs = pst.executeQuery();  
+            return rs;            
+        } catch (SQLException e) {
+            System.out.println("Error : while excicuting prepared statement");
+            System.out.println(e);
+            return null;
+        }
+    }
     /**
      * public method to deactivate
      */
