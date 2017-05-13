@@ -141,6 +141,7 @@ public class Adminlogin extends javax.swing.JInternalFrame {
         ManageAirport mngair =new ManageAirport();
         desktopPane.add(mngair);
         mngair.setVisible(true);
+        this.dispose();
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
