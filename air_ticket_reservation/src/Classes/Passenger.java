@@ -26,7 +26,7 @@ public class Passenger {
     private Date dob = null;
     private boolean active = false;
     private Connection conn = null;
-    public boolean exist = false;
+    private boolean exist = false;
     /**
      * default constructor
      */
@@ -115,7 +115,7 @@ public class Passenger {
     public void deactivate(){
         conn = DBConnect.connect();
         PreparedStatement pst = null;
-        if(exist== true){
+        if(isExist()== true){
                 this.active= false;
                 this.save();
         }
@@ -278,6 +278,13 @@ public class Passenger {
      */
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    /**
+     * @return the exist
+     */
+    public boolean isExist() {
+        return exist;
     }
     
     
