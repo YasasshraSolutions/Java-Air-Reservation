@@ -149,9 +149,7 @@ public class Adminlogin extends javax.swing.JInternalFrame {
         JDesktopPane desktopPane = getDesktopPane();
         Managecustomer mc =new Managecustomer();
         desktopPane.add(mc);
-        mc.setVisible(true);
-        this.dispose();
-        // TODO add your handling code here:
+        mc.setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
         
 
