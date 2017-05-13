@@ -29,7 +29,11 @@ public class Editdetails extends javax.swing.JInternalFrame {
         jTextField3.setText(customer.getPaddress());
         jTextField1.setText(customer.getTel());
         jXDatePicker1.setDate(customer.getDob());
-        
+        v1.setVisible(false);
+        v2.setVisible(false);
+        v3.setVisible(false);
+        v4.setVisible(false);
+        v5.setVisible(false);
     }
 
     /**
