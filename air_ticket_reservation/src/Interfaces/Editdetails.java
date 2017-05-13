@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Interfaces;
+import Classes.Passenger;
 
 import javax.swing.JDesktopPane;
 
@@ -13,10 +14,14 @@ import javax.swing.JDesktopPane;
  */
 public class Editdetails extends javax.swing.JInternalFrame {
 
+    Passenger customer;
+    
     /**
      * Creates new form Editdetails
+     * @param user : user passport number
      */
-    public Editdetails() {
+    public Editdetails(String user) {
+        customer =  new Passenger(user);
         initComponents();
     }
 
@@ -269,7 +274,7 @@ public class Editdetails extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         JDesktopPane desktopPane = getDesktopPane();
-        Customerlogin cl =new Customerlogin();
+        Customerlogin cl =new Customerlogin(customer.getPass_no());
         desktopPane.add(cl);
         cl.setVisible(true);   
         this.dispose();   
