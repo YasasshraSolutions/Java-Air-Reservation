@@ -6,6 +6,7 @@
 package Interfaces;
 
 import javax.swing.JDesktopPane;
+import Classes.Passenger;
 
 /**
  *
@@ -13,11 +14,19 @@ import javax.swing.JDesktopPane;
  */
 public class Customerlogin extends javax.swing.JInternalFrame {
 
+    Passenger customer;
+    
     /**
      * Creates new form Customerlogin
+     * @param user : user passport number
      */
-    public Customerlogin() {
+    public Customerlogin(String user) {
+        customer =  new Passenger(user); 
         initComponents();
+        cusFirstName.setText(customer.getFname());
+        cusLastName.setText(customer.getLname());
+        cusDOB.setText(customer.getDob().toString());
+        cussPassNo.setText(customer.getPass_no());
     }
 
     /**
@@ -40,6 +49,10 @@ public class Customerlogin extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        cusFirstName = new javax.swing.JLabel();
+        cusLastName = new javax.swing.JLabel();
+        cusDOB = new javax.swing.JLabel();
+        cussPassNo = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("First Name-");
@@ -84,6 +97,14 @@ public class Customerlogin extends javax.swing.JInternalFrame {
         jButton6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton6.setText("Change Password");
 
+        cusFirstName.setText("jLabel6");
+
+        cusLastName.setText("jLabel7");
+
+        cusDOB.setText("jLabel8");
+
+        cussPassNo.setText("jLabel9");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,12 +130,18 @@ public class Customerlogin extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(71, 71, 71)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cussPassNo)
+                    .addComponent(cusLastName)
+                    .addComponent(cusFirstName)
+                    .addComponent(cusDOB))
+                .addGap(0, 673, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,19 +149,30 @@ public class Customerlogin extends javax.swing.JInternalFrame {
                 .addGap(43, 43, 43)
                 .addComponent(jLabel5)
                 .addGap(73, 73, 73)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(cusFirstName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(cusLastName))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(cusDOB))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(257, 257, 257))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(257, 257, 257))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cussPassNo)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,7 +196,7 @@ public class Customerlogin extends javax.swing.JInternalFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         JDesktopPane desktopPane = getDesktopPane();
-        Editdetails ed =new Editdetails();
+        Editdetails ed =new Editdetails(customer.getPass_no());
         desktopPane.add(ed);
         ed.setVisible(true);   
         this.dispose();   // TODO add your handling code here:
@@ -166,6 +204,10 @@ public class Customerlogin extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel cusDOB;
+    private javax.swing.JLabel cusFirstName;
+    private javax.swing.JLabel cusLastName;
+    private javax.swing.JLabel cussPassNo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
