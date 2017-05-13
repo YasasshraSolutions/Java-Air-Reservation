@@ -36,10 +36,11 @@ public class Passenger {
     
     /**
      * constructor with the id
+     * @param passNo : passport number 
      */
     public  Passenger(String passNo){
         conn = DBConnect.connect();
-        PreparedStatement pst = null;
+        PreparedStatement pst;
         try {
             String sql = "SELECT * FROM `passenger` WHERE `pass_no`=?";
             pst=conn.prepareStatement(sql);
@@ -64,6 +65,46 @@ public class Passenger {
             System.out.println("Error : while excicuting prepared statement");
             System.out.println(e);
             System.out.println(e.getErrorCode());
+        }
+    }
+    
+    /**
+     * constructor with the id
+     * @param passNo : passport number 
+     * @param pass : user password 
+     * @return  : boolian login details validity
+     */
+    public boolean passengerLogin(String passNo,String pass){
+        conn = DBConnect.connect();
+        PreparedStatement pst;
+        try {
+            String sql = "SELECT * FROM `passenger` WHERE `pass_no`=? AND `password` =? ";
+            pst=conn.prepareStatement(sql);
+            pst.setString(1,passNo);
+            pst.setString(2, pass);
+            ResultSet rs;
+            rs = pst.executeQuery();
+            if (!rs.isBeforeFirst() ) {     
+                return false;
+            } 
+            while (rs.next()) {
+                    this.tel = rs.getString("tel");
+                    this.paddress = rs.getString("paddress");
+                    this.fname = rs.getString("fname");
+                    this.lname = rs.getString("lname");
+                    this.pass_no = rs.getString("pass_no");
+                    this.password = rs.getString("password");
+                    this.dob = rs.getDate("dob");
+                    this.active  = rs.getBoolean("active");
+                    this.exist = true;
+                    return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            System.out.println("Error : while excicuting prepared statement");
+            System.out.println(e);
+            System.out.println(e.getErrorCode());
+            return false;
         }
     }
     
