@@ -26,6 +26,11 @@ public class ManageAirport extends javax.swing.JInternalFrame {
     public ManageAirport() {
         initComponents();
         tableload();
+        v1.setVisible(false);
+        v2.setVisible(false);
+        v3.setVisible(false);
+        v4.setVisible(false);
+        v5.setVisible(false);
 //        jTable1.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
 //            // do some actions here, for example
 //            // print first column value from selected row
@@ -80,10 +85,20 @@ public class ManageAirport extends javax.swing.JInternalFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         jTextField5 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
+        v1 = new javax.swing.JLabel();
+        v3 = new javax.swing.JLabel();
+        v2 = new javax.swing.JLabel();
+        v4 = new javax.swing.JLabel();
+        v5 = new javax.swing.JLabel();
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Add Airports");
         jButton1.setPreferredSize(new java.awt.Dimension(140, 40));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Manage Airports");
@@ -151,6 +166,26 @@ public class ManageAirport extends javax.swing.JInternalFrame {
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("Reset");
         jButton5.setPreferredSize(new java.awt.Dimension(140, 40));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        v1.setForeground(new java.awt.Color(255, 0, 0));
+        v1.setText("*");
+
+        v3.setForeground(new java.awt.Color(255, 0, 0));
+        v3.setText("*");
+
+        v2.setForeground(new java.awt.Color(255, 0, 0));
+        v2.setText("*");
+
+        v4.setForeground(new java.awt.Color(255, 0, 0));
+        v4.setText("*");
+
+        v5.setForeground(new java.awt.Color(255, 0, 0));
+        v5.setText("*");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,27 +199,45 @@ public class ManageAirport extends javax.swing.JInternalFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2)
-                                    .addGap(45, 45, 45)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(v1)
+                                    .addGap(33, 33, 33)
                                     .addComponent(jTextField5))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel8))
-                                    .addGap(25, 25, 25)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel6)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel8)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(v5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGap(25, 25, 25))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(v4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jCheckBox1))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3))
-                                .addGap(26, 26, 26)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(v3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(26, 26, 26))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(v2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                                     .addComponent(jTextField2))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,19 +270,23 @@ public class ManageAirport extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(v1))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(v2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(v3))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(v4))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
@@ -238,7 +295,8 @@ public class ManageAirport extends javax.swing.JInternalFrame {
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(v5))
                 .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -283,6 +341,18 @@ public class ManageAirport extends javax.swing.JInternalFrame {
             String airstate = jTextField4.getText();
             boolean airactive = jCheckBox1.isSelected();
             String aircountry = jTextField1.getText();
+            String pattern= "[A-Z]*";
+        
+            if(!airid.matches(pattern)||airid.isEmpty()){
+                v1.setVisible(true);
+                return;
+            }
+            
+            a1.setAirportID(airid);
+            a1.setName(airname);
+            a1.setCity(aircity);
+            a1.setApstate(airstate);
+            a1.setCountry(aircountry);
             a1.setActive(airactive);
             if(!a1.save())
                 JOptionPane.showMessageDialog(rootPane, "Error: Data not saved");
@@ -306,6 +376,69 @@ public class ManageAirport extends javax.swing.JInternalFrame {
         jTextField1.setText(a1.getCountry());
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        
+        String airid = jTextField5.getText();
+        String airname = jTextField2.getText();
+        String aircity = jTextField3.getText();
+        String airstate = jTextField4.getText();
+        String aircountry = jTextField1.getText();
+        boolean airactive = jCheckBox1.isSelected();
+        boolean validity = true;
+        String pattern= "[A-Z]*";
+        
+        if(!airid.matches(pattern)||airid.isEmpty()){
+                validity = false;
+                v1.setVisible(true);
+        }
+        if(airname.isEmpty()){
+            validity = false;
+            v2.setVisible(true);
+        }
+        if(aircity.isEmpty()){
+            validity = false;
+            v3.setVisible(true);
+        }
+        if(airstate.isEmpty()){
+            validity = false;
+            v3.setVisible(true);
+        }
+        if(aircountry.isEmpty()){
+            validity = false;
+            v4.setVisible(true);
+        }
+        
+        if(validity==true){
+            Airport a1 = new Airport();
+            a1.setAirportID(airid);
+            a1.setName(airname);
+            a1.setCity(aircity);
+            a1.setApstate(airstate);
+            a1.setCountry(aircountry);
+            a1.setActive(airactive);
+            
+            if(a1.save()){
+                JOptionPane.showMessageDialog(rootPane, "Error: Data saved successfully");
+                tableload();
+            }
+            else 
+                return;
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        jTextField5.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jCheckBox1.setSelected(false);
+        jTextField1.setText("");
+    }//GEN-LAST:event_jButton5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -327,6 +460,11 @@ public class ManageAirport extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JLabel v1;
+    private javax.swing.JLabel v2;
+    private javax.swing.JLabel v3;
+    private javax.swing.JLabel v4;
+    private javax.swing.JLabel v5;
     // End of variables declaration//GEN-END:variables
 
     
