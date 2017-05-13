@@ -396,16 +396,16 @@ public class Custormerregister extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
-        char enter = evt.getKeyChar();
+        
         int lenth = jTextField4.getText().length();
-        if(lenth>=10||!(Character.isDigit(enter))){
+        if(lenth>=10){
             evt.consume();
         } 
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4KeyTyped
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-            if(evt.getSource()==jButton3){
+           if(evt.getSource()==jButton3){
            jTextField8.setText("");
            jTextField2.setText("");
            jTextField1.setText("");
@@ -414,6 +414,16 @@ public class Custormerregister extends javax.swing.JInternalFrame {
            jPasswordField1.setText("");
            jPasswordField2.setText("");
            jLabel13.setText("");
+           Date date = new Date();
+           jXDatePicker1.setDate(date);
+           v1.setVisible(false);
+           v2.setVisible(false);
+           v3.setVisible(false);
+           v4.setVisible(false);
+           v5.setVisible(false);
+           v6.setVisible(false);
+           v7.setVisible(false);
+           v8.setVisible(false);
        }         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -454,7 +464,7 @@ public class Custormerregister extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        try {
+        
             String fname = jTextField8.getText();
             String lname = jTextField2.getText();
             String address = jTextField3.getText();
@@ -463,40 +473,83 @@ public class Custormerregister extends javax.swing.JInternalFrame {
             String pass_no = jTextField4.getText();
             char passwrd[] = jPasswordField1.getPassword();
             String password = new String(passwrd);
+            Date datedob = jXDatePicker1.getDate();
             boolean validity = true;
+            String pattern= "[N]{1}[0-9]{9}";
             
-            if(contact.length()!=10||contact.charAt(0)!= 0){
+            if(fname.isEmpty()){
+                v1.setVisible(true);
+                validity = false;
+            }
+            
+            if(lname.isEmpty()){
+                v2.setVisible(true);
+                validity = false;
+            }
+            
+            if(address.isEmpty()){
+                v3.setVisible(true);
+                validity = false;
+            }
+            if(contact.length()!=10|| contact.isEmpty()){
                 validity = false;
                 v4.setVisible(true);
             }
-//            if()
+            
+            if(datedob == null){
+                validity = false;
+                v5.setVisible(true);
+            }
+            
+            if(!pass_no.matches(pattern)||pass_no.isEmpty()){
+                validity = false;
+                v6.setVisible(true);
+            }
+            
+            if(!password.isEmpty()){
+                for(int i = 0; i<password.length(); i++){
+                    char ch = password.charAt(i);
+                    if(Character.isSpaceChar(ch)){
+                        v7.setVisible(true);
+                        validity = false;
+                    }
+                }
+            }
+            else{
+                v7.setVisible(true);
+                validity = false;
+            }
             
             if(!Arrays.equals(jPasswordField1.getPassword(), jPasswordField2.getPassword()))
             {
                 jLabel13.setVisible(false);
+                validity = false;
             } else {
                 jLabel13.setVisible(true);
             }
+            if(validity == true){
+                Passenger p1 = new Passenger();
+                p1.setFname(fname);
+                p1.setLname(lname);
+                p1.setPaddress(address);
+                p1.setTel(contact);
+                p1.setDob(datedob);
+                p1.setPass_no(pass_no);
+                p1.setPassword(password);
+                p1.setActive(true);
             
-            Passenger p1 = new Passenger();
-            p1.setFname(fname);
-            p1.setLname(lname);
-            p1.setPaddress(address);
-            p1.setTel(contact);
-            p1.setDob(datedob);
-            p1.setPass_no(pass_no);
-            p1.setPassword(password);
-            p1.setActive(true);
-            
-            p1.save();
-            if(p1.save())
-            {
-                System.out.println("Saved Successfully");
+                p1.save();
+                if(p1.save())
+                {
+                    System.out.println("Saved Successfully");
+                }
+            }
+            else{
+                jPasswordField1.setText("");
+                jPasswordField2.setText("");
             }
             // TODO add your handling code here:
-        } catch (ParseException ex) {
-            Logger.getLogger(Custormerregister.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
