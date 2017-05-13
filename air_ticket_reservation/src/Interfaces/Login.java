@@ -6,7 +6,7 @@
 package Interfaces;
 
 import javax.swing.JDesktopPane;
-
+import Classes.Passenger;
 
 /**
  *
