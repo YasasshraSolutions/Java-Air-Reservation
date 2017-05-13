@@ -72,7 +72,7 @@ public class Passenger {
      * constructor with the id
      * @param passNo : passport number 
      * @param pass : user password 
-     * @return  : boolian login details validity 
+     * @return  : boolian login details validity
      */
     public boolean passengerLogin(String passNo,String pass){
         conn = DBConnect.connect();
