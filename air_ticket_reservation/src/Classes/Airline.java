@@ -4,71 +4,66 @@
  * and open the template in the editor.
  */
 package Classes;
-
 import Classes.DBConnect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 /**
  *
  * @author Manash Gurudeniya
  */
 public class Airline {
-
-    private String airline_ID = null;
-    private String airline_name = null;
-    private String origin = null;
-    private boolean active = false;
+    
+    private String airline_ID=null;
+    private String airline_name=null;
+    private String origin=null;
+    private boolean active=false;
     public boolean exist = false;
-    private Connection conn = null;
-
+    private Connection conn =null;
+    
     /**
-     * Get object for a given id
-     *
-     * @param ID : Airline Id
+     *  Get object for a given id
+     * @param ID : Airline Id 
      */
-    public Airline(String ID) {
+    public  Airline(String ID){
         this.conn = DBConnect.connect();
         PreparedStatement pst;
         try {
             String sql = "SELECT * FROM airline where airline_ID = ?";
-            pst = conn.prepareStatement(sql);
-            pst.setString(1, ID);
+            pst=conn.prepareStatement(sql);
+            pst.setString(1,ID);
             ResultSet rs;
             rs = pst.executeQuery();
-            if (!rs.isBeforeFirst()) {
+            if (!rs.isBeforeFirst() ) {     
                 return;
-            }
+            } 
             while (rs.next()) {
-                this.airline_ID = rs.getString("airline_ID");
-                this.airline_name = rs.getString("airline_name");
-                this.origin = rs.getString("origin");
-                this.active = rs.getBoolean("active");
-                this.exist = true;
+                    this.airline_ID = rs.getString("airline_ID");
+                    this.airline_name = rs.getString("airline_name");
+                    this.origin = rs.getString("origin");
+                    this.active  = rs.getBoolean("active");
+                    this.exist = true;
             }
         } catch (SQLException e) {
             System.out.println("Error : while excicuting prepared statement");
             System.out.println(e);
         }
     }
-
+    
     /**
      * Default constructor
      */
-    public Airline() {
+    public Airline(){
         this.conn = DBConnect.connect();
     }
-
     /**
      * insert or update if not exist
-     *
-     * @return boolean success
+     * @return boolean success 
      */
-    public boolean save() {
+    public boolean save(){
         try {
-            String sql = "INSERT INTO `airline`(`airline_ID`, `airline_name`, `origin`, `active`) VALUES (?,?,?,?)";
+            String sql="INSERT INTO `airline`(`airline_ID`, `airline_name`, `origin`, `active`) VALUES (?,?,?,?)";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, this.airline_ID);
             pst.setString(2, this.airline_name);
@@ -78,42 +73,44 @@ public class Airline {
             this.exist = true;
             return true;
         } catch (SQLException e) {
-            if (e.getErrorCode() == 1062) {
+            if(e.getErrorCode() == 1062){
                 try {
-                    String sql = "UPDATE `airline` SET `airline_name`=?,`origin`=?,`active`=? WHERE `airline_ID`=?";
-                    PreparedStatement pst = conn.prepareStatement(sql);
-                    pst.setString(1, this.airline_name);
-                    pst.setString(2, this.origin);
-                    pst.setBoolean(3, this.active);
-                    pst.setString(4, this.airline_ID);
-                    pst.executeUpdate();
-                    this.exist = true;
-                    return true;
-                } catch (SQLException e2) {
-                    System.out.println("Error : while excicuting prepared statement");
-                    return false;
-                }
+                        String sql="UPDATE `airline` SET `airline_name`=?,`origin`=?,`active`=? WHERE `airline_ID`=?";
+                        PreparedStatement pst = conn.prepareStatement(sql);
+                        pst.setString(1, this.airline_name);
+                        pst.setString(2, this.origin);
+                        pst.setBoolean(3, this.active);
+                        pst.setString(4, this.airline_ID);
+                        pst.executeUpdate();
+                        this.exist = true;
+                        return true; 
+                    } catch (SQLException e2) {
+                        System.out.println("Error : while excicuting prepared statement");
+                        return false;
+                    }
             }
             System.out.println(e);
             return false;
         }
     }
-
-    public ResultSet getAll() {
+    
+    
+    public ResultSet getALl()
+    {
         PreparedStatement pst;
         try {
             String sql = "SELECT * FROM airline";
-            pst = this.conn.prepareStatement(sql);
+            pst=this.conn.prepareStatement(sql);
             ResultSet rs;
-            rs = pst.executeQuery();
-            return rs;
+            rs = pst.executeQuery();  
+            return rs;            
         } catch (SQLException e) {
             System.out.println("Error : while excicuting prepared statement");
             System.out.println(e);
             return null;
         }
     }
-
+    
     /**
      * @return the airline_ID
      */
@@ -169,5 +166,5 @@ public class Airline {
     public void setActive(boolean active) {
         this.active = active;
     }
-
+    
 }
