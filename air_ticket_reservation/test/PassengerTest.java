@@ -29,7 +29,7 @@ public class PassengerTest {
         p1.setTel("0112294006");
         
         Passenger p2 = new Passenger("N123456789");
-        if(p2.exist){
+        if(p2.isExist()){
             System.out.println("Wada bois");
         }
         else{
@@ -39,7 +39,7 @@ public class PassengerTest {
         p1.save();
         
         Passenger p3 = new Passenger("N123456789");
-        if(p3.exist){
+        if(p3.isExist()){
             System.out.println("Wada bois");
         }
         else{
