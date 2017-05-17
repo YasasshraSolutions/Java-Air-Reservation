@@ -422,7 +422,7 @@ public class ManageAirport extends javax.swing.JInternalFrame {
             a1.setActive(airactive);
             
             if(a1.save()){
-                JOptionPane.showMessageDialog(rootPane, "Error: Data saved successfully");
+                JOptionPane.showMessageDialog(rootPane, "Data saved successfully");
                 tableload();
             }
             else 
