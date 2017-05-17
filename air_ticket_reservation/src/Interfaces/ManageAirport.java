@@ -433,6 +433,10 @@ public class ManageAirport extends javax.swing.JInternalFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        v1.setVisible(true);
+        v2.setVisible(true);
+        v3.setVisible(true);
+        v4.setVisible(true);
         jTextField5.setText("");
         jTextField2.setText("");
         jTextField3.setText("");
