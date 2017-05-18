@@ -26,7 +26,11 @@ public class Tickets {
     public Tickets() {
         conn = DBConnect.connect();
     }
-
+    /**
+     * 
+     * @param psNo
+     * @param Plegno 
+     */
     public Tickets(int psNo, int Plegno) {
         conn = DBConnect.connect();
         PreparedStatement pst = null;
@@ -69,15 +73,23 @@ public class Tickets {
         }
 
     }
-
+    
+    /**
+     * 
+     * @param pSeat
+     * @return 
+     */
     public boolean changeSeat(int pSeat) {
-
-        if (this.delete()) {
-            this.seat_no = pSeat;
-            if (!this.save()) {
-                return false;
+        if (this.isExist()) {
+            if (this.delete()) {
+                this.seat_no = pSeat;
+                if (!this.save()) {
+                    return false;
+                } else {
+                    return true;
+                }
             } else {
-                return true;
+                return false;
             }
         } else {
             return false;
