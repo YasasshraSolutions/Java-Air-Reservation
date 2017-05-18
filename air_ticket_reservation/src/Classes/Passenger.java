@@ -33,7 +33,23 @@ public class Passenger {
     public Passenger(){
         conn = DBConnect.connect();
     }
-    
+    /**
+     * getall function
+     */
+    public ResultSet getAll() {
+        PreparedStatement pst;
+        try {
+            String sql = "SELECT * FROM passenger";
+            pst = this.conn.prepareStatement(sql);
+            ResultSet rs;
+            rs = pst.executeQuery();
+            return rs;
+        } catch (SQLException e) {
+            System.out.println("Error : while excicuting prepared statement");
+            System.out.println(e);
+            return null;
+        }
+    }
     /**
      * constructor with the id
      * @param passNo : passport number 
