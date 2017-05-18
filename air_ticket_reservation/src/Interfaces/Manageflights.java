@@ -21,7 +21,7 @@ import javax.swing.table.*;
 
 /**
  *
- * @author Chaithika
+ * @author Chaithika 
  */
 public class Manageflights extends javax.swing.JInternalFrame {
 
@@ -124,6 +124,11 @@ public class Manageflights extends javax.swing.JInternalFrame {
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("Delete Flight Details");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -436,6 +441,10 @@ public class Manageflights extends javax.swing.JInternalFrame {
         jCheckBox1.setSelected(f1.isActive());
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
