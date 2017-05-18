@@ -46,7 +46,7 @@ public class Login extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
         jPasswordField2 = new javax.swing.JPasswordField();
-        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setBorder(null);
         setPreferredSize(new java.awt.Dimension(920, 720));
@@ -60,7 +60,7 @@ public class Login extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(629, 419, 79, 25);
+        jButton3.setBounds(629, 419, 79, 23);
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +68,7 @@ public class Login extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jTextField3);
-        jTextField3.setBounds(629, 315, 190, 22);
+        jTextField3.setBounds(629, 315, 190, 20);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Admin Login");
@@ -77,7 +77,7 @@ public class Login extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Username");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(498, 320, 90, 16);
+        jLabel5.setBounds(498, 320, 90, 14);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Customer Login");
@@ -86,13 +86,13 @@ public class Login extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Passport ID");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(55, 320, 110, 16);
+        jLabel1.setBounds(55, 320, 110, 14);
 
         jLabel2.setText("Password");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(55, 360, 100, 16);
+        jLabel2.setBounds(55, 360, 100, 14);
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(192, 315, 190, 22);
+        jTextField1.setBounds(192, 315, 190, 20);
 
         jButton1.setBackground(new java.awt.Color(0, 204, 204));
         jButton1.setText("Login");
@@ -103,11 +103,11 @@ public class Login extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(182, 419, 90, 25);
+        jButton1.setBounds(182, 419, 90, 23);
 
         jLabel6.setText("Password");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(495, 360, 90, 16);
+        jLabel6.setBounds(495, 360, 90, 14);
 
         jButton2.setBackground(new java.awt.Color(0, 255, 0));
         jButton2.setText("Register");
@@ -117,9 +117,9 @@ public class Login extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(303, 419, 79, 25);
+        jButton2.setBounds(303, 419, 79, 23);
         getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(192, 357, 190, 22);
+        jPasswordField1.setBounds(192, 357, 190, 20);
 
         jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,12 +127,12 @@ public class Login extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jPasswordField2);
-        jPasswordField2.setBounds(629, 357, 190, 22);
+        jPasswordField2.setBounds(629, 357, 190, 20);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/air-new-resized.png"))); // NOI18N
-        jLabel8.setText("jLabel8");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(0, 0, 1110, 740);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/air-new-resized-op.png"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(0, 0, 1110, 740);
 
         setBounds(-5, -35, 1104, 762);
     }// </editor-fold>//GEN-END:initComponents
@@ -198,7 +198,7 @@ public class Login extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JTextField jTextField1;
