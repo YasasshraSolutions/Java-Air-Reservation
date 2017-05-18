@@ -196,7 +196,7 @@ public class Manageflights extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton6);
-        jButton6.setBounds(472, 404, 169, 42);
+        jButton6.setBounds(600, 400, 169, 42);
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton4.setText("Add Flight Details");
@@ -206,7 +206,7 @@ public class Manageflights extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(285, 404, 169, 42);
+        jButton4.setBounds(410, 400, 169, 42);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Active");
