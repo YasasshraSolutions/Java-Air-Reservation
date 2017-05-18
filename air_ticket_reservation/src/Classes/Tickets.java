@@ -147,6 +147,22 @@ public class Tickets {
             return null;
         }
     }
+    
+    public ResultSet getforleg(int  pleg_no) {
+        PreparedStatement pst;
+        try {
+            String sql = "SELECT * FROM `tickets` WHERE leg_no = ?";
+            pst = this.conn.prepareStatement(sql);
+            pst.setInt(1,pleg_no);
+            ResultSet rs;
+            rs = pst.executeQuery();
+            return rs;
+        } catch (SQLException e) {
+            System.out.println("Error : while excicuting prepared statement");
+            System.out.println(e);
+            return null;
+        }
+    }
 
     /**
      * @return the seat_no

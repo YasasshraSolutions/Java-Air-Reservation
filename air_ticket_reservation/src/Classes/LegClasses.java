@@ -53,7 +53,36 @@ public class LegClasses {
 
         }
     }
-    
+        public boolean save() {
+        try {
+            String sql = "INSERT INTO `leg_classes`(`leg_no`, `class`, `price`) VALUES (?,?,?)";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setInt(1, this.leg_no);
+            pst.setInt(2, this.class_);
+            pst.setFloat(3, this.price);
+            pst.executeUpdate();
+            this.exist = true;
+            return true;
+
+        } catch (SQLException e) {
+            if (e.getErrorCode() == 1062) {
+                try {
+                    String sql = "UPDATE `leg_classes` SET `price`=? WHERE `leg_no` =? AND `class` = ?";
+                    PreparedStatement pst = conn.prepareStatement(sql);
+                    pst.setFloat(1, this.price);
+                    pst.setInt(2, this.leg_no);
+                    pst.setInt(3, this.class_);
+                    pst.executeUpdate();
+                    this.exist = true;
+                    return true;
+                } catch (SQLException e1) {
+                    System.out.println("Error" + e1);
+                    return false;
+                }
+            }
+            return false;
+        }
+    }
     /**
      * @return the leg_no
      */
