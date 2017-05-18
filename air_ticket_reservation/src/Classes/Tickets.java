@@ -88,7 +88,23 @@ public class Tickets {
             return false;
         }
     }
-
+    
+    public ResultSet getAll()
+    {
+        PreparedStatement pst;
+        try {
+            String sql = "SELECT * FROM `tickets`";
+            pst=this.conn.prepareStatement(sql);
+            ResultSet rs;
+            rs = pst.executeQuery();  
+            return rs;            
+        } catch (SQLException e) {
+            System.out.println("Error : while excicuting prepared statement");
+            System.out.println(e);
+            return null;
+        }
+    }
+    
     /**
      * @return the seat_no
      */
