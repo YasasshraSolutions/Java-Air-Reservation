@@ -5,6 +5,7 @@
  */
 package Classes;
 
+import com.mysql.jdbc.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -57,8 +58,8 @@ public class FlightLeg {
                 this.leg_type = rs.getString("leg_type");
                 this.from_aID = rs.getString("from_aID");
                 this.to_aID = rs.getString("to_aID");
-                this.departure_time = rs.getDate("departure_time");
-                this.arival_time = rs.getDate("departure_time");
+                this.departure_time = rs.getTimestamp("departure_time");
+                this.arival_time = rs.getTimestamp("arival_time");
                 this.flight_no = rs.getString("flight_no");
                 this.exist = true;
             }
@@ -68,6 +69,68 @@ public class FlightLeg {
         }
     }
     
+    
+    
+    public boolean save() {
+        if(!this.exist){
+        try {
+            String sql = "INSERT INTO `flight_leg`(`leg_type`, `flight_no`, `from_aID`, `departure_time`, `to_aID`, `arival_time`) VALUES (?,?,?,?,?,?)";
+            PreparedStatement pst = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            pst.setString(1, this.leg_type);
+            pst.setString(2, this.getFlight_no());
+            pst.setString(3, this.from_aID);
+            pst.setTimestamp(4, new java.sql.Timestamp(this.departure_time.getTime()));
+            pst.setString(5, this.to_aID);
+            pst.setTimestamp(6, new java.sql.Timestamp(this.arival_time.getTime()));
+            pst.executeUpdate();
+            this.exist = true;
+            ResultSet rs = pst.getGeneratedKeys();
+            if(rs.next())
+            {
+                this.leg_no = rs.getInt(1);
+            }
+            return true;
+        } catch (SQLException e) {
+            if(e.getErrorCode() == 1062){
+                this.exist = true;
+                return this.save();
+            }
+            System.out.println(e);
+            return false;
+        }
+        }else{
+            try {
+                    String sql = "UPDATE `flight_leg` SET `leg_type`=?,`flight_no`=?,`from_aID`=?,`departure_time`=?,`to_aID`=?,`arival_time`=? WHERE `leg_no`=?";
+                    PreparedStatement pst = conn.prepareStatement(sql);
+                    pst.setString(1, this.leg_type);
+                    pst.setString(2, this.getFlight_no());
+                    pst.setString(3, this.from_aID);
+                    pst.setTimestamp(4, new java.sql.Timestamp(this.departure_time.getTime()));
+                    pst.setString(5, this.to_aID);
+                    pst.setTimestamp(6, new java.sql.Timestamp(this.arival_time.getTime()));
+                    pst.setInt(7, this.leg_no);
+                    pst.executeUpdate();
+                    this.exist = true;
+                    return true;
+                } catch (SQLException e2) {
+                    System.out.println("Error : while excicuting prepared statement");
+                    return false;
+                }
+        }
+
+    }
+    public boolean remove(){
+         try {
+            String sql = "DELETE FROM `flight_leg` WHERE `leg_no` =?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setInt(1, this.leg_no);
+            pst.executeUpdate();
+            this.exist = false;
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
     public ResultSet getAll() {
         PreparedStatement pst;
         try {
@@ -165,6 +228,20 @@ public class FlightLeg {
      */
     public void setArival_time(Date arival_time) {
         this.arival_time = arival_time;
+    }
+
+    /**
+     * @return the flight_no
+     */
+    public String getFlight_no() {
+        return flight_no;
+    }
+
+    /**
+     * @param flight_no the flight_no to set
+     */
+    public void setFlight_no(String flight_no) {
+        this.flight_no = flight_no;
     }
     
     
