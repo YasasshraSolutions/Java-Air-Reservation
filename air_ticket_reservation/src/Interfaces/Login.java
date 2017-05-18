@@ -60,7 +60,7 @@ public class Login extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(629, 419, 79, 23);
+        jButton3.setBounds(629, 419, 79, 25);
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +68,7 @@ public class Login extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jTextField3);
-        jTextField3.setBounds(629, 315, 190, 20);
+        jTextField3.setBounds(629, 315, 190, 22);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Admin Login");
@@ -77,7 +77,7 @@ public class Login extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Username");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(530, 320, 48, 14);
+        jLabel5.setBounds(498, 320, 90, 16);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Customer Login");
@@ -86,13 +86,13 @@ public class Login extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Passport ID");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(100, 320, 56, 14);
+        jLabel1.setBounds(55, 320, 110, 16);
 
         jLabel2.setText("Password");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(100, 360, 46, 14);
+        jLabel2.setBounds(55, 360, 100, 16);
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(192, 315, 190, 20);
+        jTextField1.setBounds(192, 315, 190, 22);
 
         jButton1.setBackground(new java.awt.Color(0, 204, 204));
         jButton1.setText("Login");
@@ -103,11 +103,11 @@ public class Login extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(192, 419, 80, 23);
+        jButton1.setBounds(192, 419, 80, 25);
 
         jLabel6.setText("Password");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(530, 360, 46, 14);
+        jLabel6.setBounds(495, 360, 90, 16);
 
         jButton2.setBackground(new java.awt.Color(0, 255, 0));
         jButton2.setText("Register");
@@ -117,9 +117,9 @@ public class Login extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(303, 419, 79, 23);
+        jButton2.setBounds(303, 419, 79, 25);
         getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(192, 357, 190, 20);
+        jPasswordField1.setBounds(192, 357, 190, 22);
 
         jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,7 +127,7 @@ public class Login extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jPasswordField2);
-        jPasswordField2.setBounds(629, 357, 190, 20);
+        jPasswordField2.setBounds(629, 357, 190, 22);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/air-new-resized.png"))); // NOI18N
         jLabel8.setText("jLabel8");
