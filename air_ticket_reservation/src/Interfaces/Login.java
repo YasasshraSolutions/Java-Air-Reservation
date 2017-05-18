@@ -129,7 +129,7 @@ public class Login extends javax.swing.JInternalFrame {
         getContentPane().add(jPasswordField2);
         jPasswordField2.setBounds(629, 357, 190, 20);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/air-new-resized-op.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/air-new-login.png"))); // NOI18N
         jLabel7.setText("jLabel7");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(0, 0, 1110, 740);
