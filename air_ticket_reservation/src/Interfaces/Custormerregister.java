@@ -480,18 +480,19 @@ public class Custormerregister extends javax.swing.JInternalFrame {
             Date datedob = jXDatePicker1.getDate();
             boolean validity = true;
             String pattern= "[N]{1}[0-9]{9}";
+            String pattern1 = "[A-z\\s]*";
             
-            if(fname.isEmpty()){
+            if(!fname.matches(pattern1)||fname.isEmpty()){
                 v1.setVisible(true);
                 validity = false;
             }
             
-            if(lname.isEmpty()){
+            if(!lname.matches(pattern1)||lname.isEmpty()){
                 v2.setVisible(true);
                 validity = false;
             }
             
-            if(address.isEmpty()){
+            if(!address.matches(pattern1)||address.isEmpty()){
                 v3.setVisible(true);
                 validity = false;
             }
