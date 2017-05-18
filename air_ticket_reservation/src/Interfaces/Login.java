@@ -129,7 +129,7 @@ public class Login extends javax.swing.JInternalFrame {
         getContentPane().add(jPasswordField2);
         jPasswordField2.setBounds(629, 357, 190, 20);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Desktop\\Airline ticket reservation system\\Java-Air-Reservation\\air_ticket_reservation\\src\\Interfaces\\air-new-resized.png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/air-new-resized.png"))); // NOI18N
         jLabel8.setText("jLabel8");
         getContentPane().add(jLabel8);
         jLabel8.setBounds(0, 0, 1110, 740);
