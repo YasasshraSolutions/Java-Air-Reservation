@@ -58,6 +58,11 @@ public class Adminlogin extends javax.swing.JInternalFrame {
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("Manage Airline");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton4.setText("Manage Customer");
@@ -167,6 +172,14 @@ public class Adminlogin extends javax.swing.JInternalFrame {
         mf.setVisible(true);   
         this.dispose();  // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        JDesktopPane desktopPane = getDesktopPane();
+        Manageairline ma =new Manageairline();
+        desktopPane.add(ma);
+        ma.setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
         
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
