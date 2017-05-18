@@ -177,13 +177,15 @@
                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="v8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jPasswordField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel13" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jPasswordField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel13" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

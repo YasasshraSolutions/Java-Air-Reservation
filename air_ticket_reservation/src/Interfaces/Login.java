@@ -36,7 +36,6 @@ public class Login extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -46,6 +45,7 @@ public class Login extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
+        jPasswordField2 = new javax.swing.JPasswordField();
 
         setBorder(null);
         setPreferredSize(new java.awt.Dimension(920, 720));
@@ -95,6 +95,13 @@ public class Login extends javax.swing.JInternalFrame {
             }
         });
 
+        jPasswordField2.setText("jPasswordField2");
+        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,11 +130,11 @@ public class Login extends javax.swing.JInternalFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
                         .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(285, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPasswordField2))))
+                .addContainerGap(275, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,14 +153,14 @@ public class Login extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addContainerGap(281, Short.MAX_VALUE))
         );
 
         setBounds(-5, -35, 1104, 762);
@@ -194,6 +201,10 @@ public class Login extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -206,8 +217,8 @@ public class Login extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
