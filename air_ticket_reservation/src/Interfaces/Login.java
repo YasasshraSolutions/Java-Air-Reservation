@@ -77,7 +77,7 @@ public class Login extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Username");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(546, 318, 48, 14);
+        jLabel5.setBounds(530, 320, 48, 14);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Customer Login");
@@ -86,11 +86,11 @@ public class Login extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Passport ID");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(118, 318, 56, 14);
+        jLabel1.setBounds(100, 320, 56, 14);
 
         jLabel2.setText("Password");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(118, 360, 46, 14);
+        jLabel2.setBounds(100, 360, 46, 14);
         getContentPane().add(jTextField1);
         jTextField1.setBounds(192, 315, 190, 20);
 
@@ -107,7 +107,7 @@ public class Login extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Password");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(546, 360, 46, 14);
+        jLabel6.setBounds(530, 360, 46, 14);
 
         jButton2.setBackground(new java.awt.Color(0, 255, 0));
         jButton2.setText("Register");
