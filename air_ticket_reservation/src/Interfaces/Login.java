@@ -5,8 +5,10 @@
  */
 package Interfaces;
 
+import Classes.Admin;
 import javax.swing.JDesktopPane;
 import Classes.Passenger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,8 +22,6 @@ public class Login extends javax.swing.JInternalFrame {
     public Login() {
         initComponents();
 
-        
-        
     }
 
     /**
@@ -103,7 +103,7 @@ public class Login extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(192, 419, 80, 25);
+        jButton1.setBounds(182, 419, 90, 25);
 
         jLabel6.setText("Password");
         getContentPane().add(jLabel6);
@@ -138,16 +138,20 @@ public class Login extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       
-        
-        JDesktopPane desktopPane = getDesktopPane();
-        Adminlogin al =new Adminlogin();
-        desktopPane.add(al);
-        al.setVisible(true);
-        
-        //this.getContentPane().removeAll();
 
-        this.dispose();
+        JDesktopPane desktopPane = getDesktopPane();
+        String user = jTextField3.getText();
+        String pass = new String(jPasswordField2.getPassword());
+        Admin a = new Admin();
+
+        if (a.adminLogin(user, pass)) {
+            Adminlogin al = new Adminlogin();
+            desktopPane.add(al);
+            al.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Error: Username or password incorrect");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -157,17 +161,24 @@ public class Login extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JDesktopPane desktopPane = getDesktopPane();
         String user = jTextField1.getText();
-        Customerlogin cr =new Customerlogin(user);
-        desktopPane.add(cr);
-        cr.setVisible(true);   
-        this.dispose();        // TODO add your handling code here:
+        String pass = new String(jPasswordField1.getPassword());
+        Passenger cus = new Passenger();
+        if (cus.passengerLogin(user, pass)) {
+            Customerlogin cr = new Customerlogin(user);
+            desktopPane.add(cr);
+            cr.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Error: Username or password incorrect");
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         JDesktopPane desktopPane = getDesktopPane();
-        Custormerregister cr =new Custormerregister();
+        Custormerregister cr = new Custormerregister();
         desktopPane.add(cr);
-        cr.setVisible(true);   
+        cr.setVisible(true);
         this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
