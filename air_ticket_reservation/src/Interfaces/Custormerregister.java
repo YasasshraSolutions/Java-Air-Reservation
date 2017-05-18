@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javafx.embed.swing.JFXPanel;
+import javax.swing.JOptionPane;
 public class Custormerregister extends javax.swing.JInternalFrame {
 
     
@@ -545,6 +546,7 @@ public class Custormerregister extends javax.swing.JInternalFrame {
                 if(p1.save())
                 {
                     System.out.println("Saved Successfully");
+                    JOptionPane.showMessageDialog(rootPane, "Data saved successfully!");
                     jTextField8.setText("");
                     jTextField2.setText("");
                     jTextField1.setText("");
@@ -563,6 +565,7 @@ public class Custormerregister extends javax.swing.JInternalFrame {
                     v6.setVisible(false);
                     v7.setVisible(false);
                     v8.setVisible(false);
+                    
                 }
             }
             else{
