@@ -49,6 +49,9 @@ public class Flight {
             }
             while (rs.next()) {
                 this.flight_no = rs.getString("flight_no");
+                this.max_seats = rs.getInt("max_seats");
+                this.airline_ID = rs.getString("airline_ID");
+                this.active = rs.getBoolean("active");
                 this.exist = true;
             }
         } catch (SQLException e) {
