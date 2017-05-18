@@ -294,12 +294,11 @@ public class Manageairline extends javax.swing.JInternalFrame {
                 v3.setVisible(true);
         }
             if (validity == true){
-                Airline f1 = new Airline();
-                f1.setAirline_ID(airid);
-                f1.setAirline_name(airname);
-                f1.setOrigin(org);
-                f1.setActive(airlineactive);
-                if(!f1.save()){
+                a1.setAirline_ID(airid);
+                a1.setAirline_name(airname);
+                a1.setOrigin(org);
+                a1.setActive(airlineactive);
+                if(!a1.save()){
                     JOptionPane.showMessageDialog(rootPane, "Error: Data not saved");
                 }else {
                     JOptionPane.showConfirmDialog(rootPane, "Saved Successfully");
