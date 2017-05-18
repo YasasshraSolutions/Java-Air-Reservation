@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
 import javafx.embed.swing.JFXPanel;
+import javax.swing.JOptionPane;
 public class Custormerregister extends javax.swing.JInternalFrame {
 
     
@@ -499,7 +500,7 @@ public class Custormerregister extends javax.swing.JInternalFrame {
                 v4.setVisible(true);
             }
             
-            if(datedob == null){
+            if(datedob == null || datedob.after(new Date())){
                 validity = false;
                 v5.setVisible(true);
             }
@@ -545,6 +546,26 @@ public class Custormerregister extends javax.swing.JInternalFrame {
                 if(p1.save())
                 {
                     System.out.println("Saved Successfully");
+                    JOptionPane.showMessageDialog(rootPane, "Data saved successfully!");
+                    jTextField8.setText("");
+                    jTextField2.setText("");
+                    jTextField1.setText("");
+                    jTextField3.setText("");
+                    jTextField4.setText("");
+                    jPasswordField1.setText("");
+                    jPasswordField2.setText("");
+                    jLabel13.setText("");
+                    Date date = new Date();
+                    jXDatePicker1.setDate(date);
+                    v1.setVisible(false);
+                    v2.setVisible(false);
+                    v3.setVisible(false);
+                    v4.setVisible(false);
+                    v5.setVisible(false);
+                    v6.setVisible(false);
+                    v7.setVisible(false);
+                    v8.setVisible(false);
+                    
                 }
             }
             else{
