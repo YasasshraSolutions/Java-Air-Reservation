@@ -337,9 +337,6 @@ public class ManageAirport extends javax.swing.JInternalFrame {
                 return;
             }
             Airport a1 = new Airport((String) jTable1.getValueAt(row, 0));
-            System.out.println(a1.getAirportID());
-            System.out.println(jTextField5.getText());
-            System.out.println(a1.getAirportID().equals(jTextField5.getText()));
             if(!a1.getAirportID().equals(jTextField5.getText())) {
                 JOptionPane.showMessageDialog(rootPane, "Cannot update non exhisting airport");
                 return;
