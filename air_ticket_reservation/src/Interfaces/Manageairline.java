@@ -6,7 +6,14 @@
 package Interfaces;
 
 import javax.swing.JDesktopPane;
-
+import Classes.Airline;
+import java.awt.Color;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import net.proteanit.sql.DbUtils;
+import javax.swing.table.*;
 /**
  *
  * @author Chaithika
@@ -18,6 +25,30 @@ public class Manageairline extends javax.swing.JInternalFrame {
      */
     public Manageairline() {
         initComponents();
+        tableload();
+        v1.setVisible(false);
+        v2.setVisible(false);
+        v3.setVisible(false);
+        
+    }
+    
+    private void resetFields(){
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jCheckBox1.setSelected(false);
+            }
+    private void tableload()
+    {
+        Airline airLine = new Airline();
+        ResultSet rs = airLine.getAll();
+        if(rs == null)
+        {
+            return;
+        }
+        jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+        
+        jTable1.setBackground(Color.yellow);
     }
 
     /**
@@ -36,11 +67,9 @@ public class Manageairline extends javax.swing.JInternalFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
         v1 = new javax.swing.JLabel();
         v2 = new javax.swing.JLabel();
         v3 = new javax.swing.JLabel();
-        v4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -49,6 +78,7 @@ public class Manageairline extends javax.swing.JInternalFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setPreferredSize(new java.awt.Dimension(920, 735));
 
@@ -73,9 +103,6 @@ public class Manageairline extends javax.swing.JInternalFrame {
         v3.setForeground(new java.awt.Color(255, 0, 0));
         v3.setText("*");
 
-        v4.setForeground(new java.awt.Color(255, 0, 0));
-        v4.setText("*");
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -95,6 +122,11 @@ public class Manageairline extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 3, 13)); // NOI18N
@@ -109,13 +141,23 @@ public class Manageairline extends javax.swing.JInternalFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton3.setText("Add Airline Details");
+        jButton3.setText("Edit Airline Details");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton4.setText("Deactivate Airline");
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton5.setText("Add Airline");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Manage Airline");
@@ -140,10 +182,7 @@ public class Manageairline extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(v3))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(v4))
+                                    .addComponent(jLabel5)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -157,7 +196,7 @@ public class Manageairline extends javax.swing.JInternalFrame {
                                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jCheckBox1)))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1)))
@@ -198,12 +237,11 @@ public class Manageairline extends javax.swing.JInternalFrame {
                             .addComponent(jLabel4)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(v3))
-                        .addGap(21, 21, 21)
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(v4))
-                        .addGap(14, 14, 14)
+                            .addComponent(jCheckBox1))
+                        .addGap(12, 12, 12)
                         .addComponent(jButton1))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(123, 123, 123)
@@ -225,6 +263,113 @@ public class Manageairline extends javax.swing.JInternalFrame {
         this.dispose();  // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int d =JOptionPane.showConfirmDialog(null, "Press yes to update");
+        
+        if( d == 0){
+            
+            int row = jTable1.getSelectedRow();
+            if (row == -1){
+                JOptionPane.showMessageDialog(rootPane, "Error: no row selected");
+                return;
+            }
+            Airline a1 = new Airline((String) jTable1.getValueAt(row, 0));
+            String airid = jTextField1.getText();
+            String airname = jTextField2.getText();
+            String org = jTextField3.getText();
+            boolean airlineactive =jCheckBox1.isSelected();
+            boolean validity = true;
+            
+            if (airid.isEmpty()|| jTextField1 ==null ){
+                validity =false;
+                v1.setVisible(true);   
+            }
+            if (airname.isEmpty()||jTextField2 == null){
+                validity=false;
+                v2.setVisible(true);
+            }
+            if (org.isEmpty()||jTextField3 == null){
+                validity=false;
+                v3.setVisible(true);
+        }
+            if (validity == true){
+                Airline f1 = new Airline();
+                f1.setAirline_ID(airid);
+                f1.setAirline_name(airname);
+                f1.setOrigin(org);
+                f1.setActive(airlineactive);
+                if(!f1.save()){
+                    JOptionPane.showMessageDialog(rootPane, "Error: Data not saved");
+                }else {
+                    JOptionPane.showConfirmDialog(rootPane, "Saved Successfully");
+                    this.resetFields();
+                    v1.setVisible(false);
+                    v2.setVisible(false);
+                    v3.setVisible(false);
+                }
+               }
+            this.tableload();
+                
+            }
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+             String airid = jTextField1.getText();
+             String airname = jTextField2.getText();
+             String org = jTextField3.getText();
+             boolean airlineactive = jCheckBox1.isSelected();
+             boolean validity =true;
+             
+             if(airid.isEmpty()||jTextField1 == null) {
+                 validity = false; 
+                 v1.setVisible(true);
+             }
+              if(airname.isEmpty()||jTextField2 == null) {
+                 validity = false; 
+                 v2.setVisible(true);
+              }
+              if(org.isEmpty()||jTextField3 == null) {
+                 validity = false; 
+                 v3.setVisible(true);
+              }
+              if(validity == true){
+                  Airline f1 = new Airline();
+                  f1.setAirline_ID(airid);
+                  f1.setAirline_name(airname);
+                  f1.setOrigin(org);
+                  f1.setActive(airlineactive);
+                  if(!f1.save()){
+                      JOptionPane.showMessageDialog(rootPane, "Error data not saved");
+                  }else {
+                      JOptionPane.showMessageDialog(rootPane, "Saved Successfully");
+                      this.resetFields();
+                      v1.setVisible(false);
+                      v2.setVisible(false);
+                      v3.setVisible(false);
+                  }
+              }
+              this.tableload();
+              
+             
+             
+            // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int row =jTable1.getSelectedRow();
+        if(row == -1){
+            return;
+        }
+        Airline f1 = new Airline(jTable1.getValueAt(row, 0).toString());
+        jTextField1.setText(f1.getAirline_ID());
+        jTextField2.setText(f1.getAirline_name());
+        jTextField3.setText(f1.getOrigin());
+        jCheckBox1.setSelected(f1.isActive());
+// TODO add your handling code here:
+    }//GEN-LAST:event_jTable1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -232,6 +377,7 @@ public class Manageairline extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -242,10 +388,8 @@ public class Manageairline extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel v1;
     private javax.swing.JLabel v2;
     private javax.swing.JLabel v3;
-    private javax.swing.JLabel v4;
     // End of variables declaration//GEN-END:variables
 }
