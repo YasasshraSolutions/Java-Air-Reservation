@@ -23,7 +23,9 @@ public class Admin {
     private String name = null;
     private Connection conn = null;
     private boolean exist = false;
-
+    public Admin(){
+        conn = DBConnect.connect();
+    }
     /**
      * constructor with the id
      * @param adminid : admin id
