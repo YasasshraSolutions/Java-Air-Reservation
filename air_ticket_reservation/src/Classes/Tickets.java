@@ -27,14 +27,14 @@ public class Tickets {
         conn = DBConnect.connect();
     }
 
-    public Tickets(int psNo, String Plegno) {
+    public Tickets(int psNo, int Plegno) {
         conn = DBConnect.connect();
         PreparedStatement pst = null;
         try {
             String sql = "SELECT * FROM `tickets` WHERE `seat_no`=? AND `leg_no`=?";
             pst = conn.prepareStatement(sql);
             pst.setInt(1, psNo);
-            pst.setString(2, Plegno);
+            pst.setInt(2, Plegno);
             ResultSet rs;
             rs = pst.executeQuery();
             if (!rs.isBeforeFirst()) {
