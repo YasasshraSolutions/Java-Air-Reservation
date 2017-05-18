@@ -323,6 +323,10 @@ public class Manageflights extends javax.swing.JInternalFrame {
                 return;
             }
             Flight f1 = new Flight((String) jTable1.getValueAt(row, 0));
+            if(!f1.getFlight_no().equals(jTextField2.getText())) {
+                JOptionPane.showMessageDialog(rootPane, "Cannot update non exhisting airport");
+                return;
+            }
             String flno = jTextField2.getText();
             String maxseats = jTextField3.getText();
             Integer maxs = 0;

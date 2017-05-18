@@ -275,6 +275,10 @@ public class Manageairline extends javax.swing.JInternalFrame {
                 return;
             }
             Airline a1 = new Airline((String) jTable1.getValueAt(row, 0));
+            if(!a1.getAirline_ID().equals(jTextField1.getText())) {
+                JOptionPane.showMessageDialog(rootPane, "Cannot update non exhisting airport");
+                return;
+            }
             String airid = jTextField1.getText();
             String airname = jTextField2.getText();
             String org = jTextField3.getText();
