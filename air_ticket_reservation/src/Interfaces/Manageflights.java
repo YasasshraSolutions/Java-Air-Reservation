@@ -155,7 +155,7 @@ public class Manageflights extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(285, 133, 614, 260);
+        jScrollPane1.setBounds(285, 133, 610, 90);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Flight No");
