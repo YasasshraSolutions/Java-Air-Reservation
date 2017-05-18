@@ -39,7 +39,7 @@ public class Manageflights extends javax.swing.JInternalFrame {
         v2.setVisible(false);		
         v3.setVisible(false);
     }
-     private void AirlinesLoad() {		
+    private void AirlinesLoad() {		
         Airline as = new Airline();		
         ResultSet rs = as.getAll();		
         jComboBox1.removeAllItems();		
