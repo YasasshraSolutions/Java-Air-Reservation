@@ -108,7 +108,7 @@ public class Flight {
             return null;
         }
     }
-
+  
     /**
      * @return the flight_no
      */
