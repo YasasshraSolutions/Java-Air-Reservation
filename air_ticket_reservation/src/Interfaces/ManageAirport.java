@@ -14,6 +14,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import net.proteanit.sql.DbUtils;
 import javax.swing.table.*;
+
 /**
  *
  * @author FRANKENSTEIN
@@ -31,32 +32,33 @@ public class ManageAirport extends javax.swing.JInternalFrame {
         v3.setVisible(false);
         v4.setVisible(false);
         v5.setVisible(false);
-//        jTable1.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
-//            // do some actions here, for example
-//            // print first column value from selected row
-//            System.out.println(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
-//        });
-        
     }
 
     /**
      * Genarate data for jtable
      */
-    private void tableload()
-    {
+    private void tableload() {
         Airport airPorts = new Airport();
         ResultSet rs = airPorts.getAll();
-        if(rs == null)
-        {
+        if (rs == null) {
             return;
-        }        
+        }
         jTable1.setModel(DbUtils.resultSetToTableModel(rs));
-        
+
         //set bg colour
         jTable1.setBackground(Color.yellow);
-            
-        
+
     }
+
+    private void resetfeilds() {
+        jTextField5.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jCheckBox1.setSelected(false);
+        jTextField1.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -310,11 +312,11 @@ public class ManageAirport extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+
         JDesktopPane desktopPane = getDesktopPane();
-        Adminlogin al =new Adminlogin();
+        Adminlogin al = new Adminlogin();
         desktopPane.add(al);
-        al.setVisible(true); 
+        al.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -335,27 +337,58 @@ public class ManageAirport extends javax.swing.JInternalFrame {
                 return;
             }
             Airport a1 = new Airport((String) jTable1.getValueAt(row, 0));
-            String airid = jTextField5.getText();
+            System.out.println(a1.getAirportID());
+            System.out.println(jTextField5.getText());
+            System.out.println(a1.getAirportID().equals(jTextField5.getText()));
+            if(!a1.getAirportID().equals(jTextField5.getText())) {
+                JOptionPane.showMessageDialog(rootPane, "Cannot update non exhisting airport");
+                return;
+            }
             String airname = jTextField2.getText();
             String aircity = jTextField3.getText();
             String airstate = jTextField4.getText();
             boolean airactive = jCheckBox1.isSelected();
+            boolean validity = true;
             String aircountry = jTextField1.getText();
-            String pattern= "[A-Z]*";
-        
-            if(!airid.matches(pattern)||airid.isEmpty()){
-                v1.setVisible(true);
-                return;
+            if (airname.isEmpty()) {
+                validity = false;
+                v2.setVisible(true);
             }
-            
-            a1.setAirportID(airid);
+            if (aircity.isEmpty()) {
+                validity = false;
+                v3.setVisible(true);
+            }
+            if (airstate.isEmpty()) {
+                validity = false;
+                v3.setVisible(true);
+            }
+            if (aircountry.isEmpty()) {
+                validity = false;
+                v4.setVisible(true);
+            }
+
+            if (validity == true) {
+                a1.setName(airname);
+                a1.setCity(aircity);
+                a1.setApstate(airstate);
+                a1.setCountry(aircountry);
+                a1.setActive(airactive);
+
+                if (a1.save()) {
+                    JOptionPane.showMessageDialog(rootPane, "Data saved successfully");
+                    tableload();
+                } else {
+                    return;
+                }
+            }
             a1.setName(airname);
             a1.setCity(aircity);
             a1.setApstate(airstate);
             a1.setCountry(aircountry);
             a1.setActive(airactive);
-            if(!a1.save())
+            if (!a1.save()) {
                 JOptionPane.showMessageDialog(rootPane, "Error: Data not saved");
+            }
             this.tableload();
 
         }
@@ -367,7 +400,7 @@ public class ManageAirport extends javax.swing.JInternalFrame {
         if (row == -1) {
             return;
         }
-        Airport a1 = new Airport(jTable1.getValueAt(row,0).toString());
+        Airport a1 = new Airport(jTable1.getValueAt(row, 0).toString());
         jTextField5.setText(a1.getAirportID());
         jTextField2.setText(a1.getName());
         jTextField3.setText(a1.getCity());
@@ -379,7 +412,6 @@ public class ManageAirport extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-        
         String airid = jTextField5.getText();
         String airname = jTextField2.getText();
         String aircity = jTextField3.getText();
@@ -387,30 +419,30 @@ public class ManageAirport extends javax.swing.JInternalFrame {
         String aircountry = jTextField1.getText();
         boolean airactive = jCheckBox1.isSelected();
         boolean validity = true;
-        String pattern= "[A-Z]*";
-        
-        if(!airid.matches(pattern)||airid.isEmpty()){
-                validity = false;
-                v1.setVisible(true);
+        String pattern = "[A-Z]*";
+
+        if (!airid.matches(pattern) || airid.isEmpty()) {
+            validity = false;
+            v1.setVisible(true);
         }
-        if(airname.isEmpty()){
+        if (airname.isEmpty()) {
             validity = false;
             v2.setVisible(true);
         }
-        if(aircity.isEmpty()){
+        if (aircity.isEmpty()) {
             validity = false;
             v3.setVisible(true);
         }
-        if(airstate.isEmpty()){
+        if (airstate.isEmpty()) {
             validity = false;
             v3.setVisible(true);
         }
-        if(aircountry.isEmpty()){
+        if (aircountry.isEmpty()) {
             validity = false;
             v4.setVisible(true);
         }
-        
-        if(validity==true){
+
+        if (validity == true) {
             Airport a1 = new Airport();
             a1.setAirportID(airid);
             a1.setName(airname);
@@ -418,15 +450,15 @@ public class ManageAirport extends javax.swing.JInternalFrame {
             a1.setApstate(airstate);
             a1.setCountry(aircountry);
             a1.setActive(airactive);
-            
-            if(a1.save()){
+
+            if (a1.save()) {
                 JOptionPane.showMessageDialog(rootPane, "Data saved successfully");
                 tableload();
-            }
-            else 
+            } else {
                 return;
+            }
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -435,12 +467,7 @@ public class ManageAirport extends javax.swing.JInternalFrame {
         v2.setVisible(false);
         v3.setVisible(false);
         v4.setVisible(false);
-        jTextField5.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField4.setText("");
-        jCheckBox1.setSelected(false);
-        jTextField1.setText("");
+        this.resetfeilds();
     }//GEN-LAST:event_jButton5ActionPerformed
 
 
@@ -471,5 +498,4 @@ public class ManageAirport extends javax.swing.JInternalFrame {
     private javax.swing.JLabel v5;
     // End of variables declaration//GEN-END:variables
 
-    
 }

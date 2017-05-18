@@ -8,6 +8,7 @@ import Classes.Passenger;
 import java.util.Date;
 
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -280,7 +281,7 @@ public class Editdetails extends javax.swing.JInternalFrame {
             v4.setVisible(true);
         }
             
-        if(dob == null){
+        if(dob == null || dob.after(new Date())){
             validity = false;
             v5.setVisible(true);
         }
@@ -300,6 +301,12 @@ public class Editdetails extends javax.swing.JInternalFrame {
                 if(p1.save())
                 {
                     System.out.println("Updated Successfully");
+                    JOptionPane.showMessageDialog(rootPane, "Data saved successfully!");
+                    JDesktopPane desktopPane = getDesktopPane();
+                    Customerlogin cl = new Customerlogin(customer.getPass_no());
+                    desktopPane.add(cl);
+                    cl.setVisible(true);   
+                    this.dispose();
                 }
             }
     }//GEN-LAST:event_jButton1ActionPerformed
