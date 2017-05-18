@@ -5,6 +5,8 @@
  */
 package Interfaces;
 
+import javax.swing.JDesktopPane;
+
 /**
  *
  * @author Chaithika
@@ -100,6 +102,11 @@ public class Manageairline extends javax.swing.JInternalFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton3.setText("Add Airline Details");
@@ -209,6 +216,14 @@ public class Manageairline extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        JDesktopPane desktopPane = getDesktopPane();
+        Adminlogin ma =new Adminlogin();
+        desktopPane.add(ma);
+        ma.setVisible(true);
+        this.dispose();  // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
