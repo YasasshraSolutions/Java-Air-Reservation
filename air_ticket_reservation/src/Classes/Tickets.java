@@ -22,9 +22,11 @@ public class Tickets {
     private int leg_no;
     private Connection conn;
     private boolean exist = false;
-    public Tickets(){
+
+    public Tickets() {
         conn = DBConnect.connect();
     }
+
     public Tickets(int psNo, String Plegno) {
         conn = DBConnect.connect();
         PreparedStatement pst = null;
@@ -49,6 +51,36 @@ public class Tickets {
         } catch (SQLException e) {
             System.out.println("Error:" + e);
 
+        }
+    }
+
+    private boolean delete() {
+        try {
+            String sql = "DELETE FROM `tickets` WHERE `seat_no` = ? AND `leg_no` = ?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setInt(1, this.seat_no);
+            pst.setInt(2, this.leg_no);
+            pst.executeUpdate();
+            this.exist = false;
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Error:" + e);
+            return false;
+        }
+
+    }
+
+    public boolean changeSeat(int pSeat) {
+
+        if (this.delete()) {
+            this.seat_no = pSeat;
+            if (!this.save()) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
         }
     }
 
@@ -88,23 +120,22 @@ public class Tickets {
             return false;
         }
     }
-    
-    public ResultSet getAll()
-    {
+
+    public ResultSet getAll() {
         PreparedStatement pst;
         try {
             String sql = "SELECT * FROM `tickets`";
-            pst=this.conn.prepareStatement(sql);
+            pst = this.conn.prepareStatement(sql);
             ResultSet rs;
-            rs = pst.executeQuery();  
-            return rs;            
+            rs = pst.executeQuery();
+            return rs;
         } catch (SQLException e) {
             System.out.println("Error : while excicuting prepared statement");
             System.out.println(e);
             return null;
         }
     }
-    
+
     /**
      * @return the seat_no
      */
