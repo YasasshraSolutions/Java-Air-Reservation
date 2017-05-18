@@ -91,7 +91,7 @@ public class ManageAirport extends javax.swing.JInternalFrame {
         v4 = new javax.swing.JLabel();
         v5 = new javax.swing.JLabel();
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Add Airports");
         jButton1.setPreferredSize(new java.awt.Dimension(140, 40));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -106,14 +106,13 @@ public class ManageAirport extends javax.swing.JInternalFrame {
         jButton2.setBackground(new java.awt.Color(51, 255, 51));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Back");
-        jButton2.setPreferredSize(new java.awt.Dimension(70, 25));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton4.setText("Update Airports");
         jButton4.setPreferredSize(new java.awt.Dimension(140, 40));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -249,7 +248,7 @@ public class ManageAirport extends javax.swing.JInternalFrame {
                                 .addGap(96, 96, 96)
                                 .addComponent(jLabel1)
                                 .addGap(233, 233, 233)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButton2))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(30, 30, 30))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -264,7 +263,7 @@ public class ManageAirport extends javax.swing.JInternalFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2))
                 .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
