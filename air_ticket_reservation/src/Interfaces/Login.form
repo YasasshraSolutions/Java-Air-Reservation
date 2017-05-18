@@ -184,7 +184,7 @@
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Interfaces/air-new-resized-op.png"/>
+          <Image iconType="3" name="/Interfaces/air-new-login.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel7"/>
       </Properties>
