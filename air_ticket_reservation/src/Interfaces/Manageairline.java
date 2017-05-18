@@ -275,6 +275,10 @@ public class Manageairline extends javax.swing.JInternalFrame {
                 return;
             }
             Airline a1 = new Airline((String) jTable1.getValueAt(row, 0));
+            if(!a1.getAirline_ID().equals(jTextField1.getText())) {
+                JOptionPane.showMessageDialog(rootPane, "Cannot update non exhisting airport");
+                return;
+            }
             String airid = jTextField1.getText();
             String airname = jTextField2.getText();
             String org = jTextField3.getText();
@@ -294,12 +298,11 @@ public class Manageairline extends javax.swing.JInternalFrame {
                 v3.setVisible(true);
         }
             if (validity == true){
-                Airline f1 = new Airline();
-                f1.setAirline_ID(airid);
-                f1.setAirline_name(airname);
-                f1.setOrigin(org);
-                f1.setActive(airlineactive);
-                if(!f1.save()){
+                a1.setAirline_ID(airid);
+                a1.setAirline_name(airname);
+                a1.setOrigin(org);
+                a1.setActive(airlineactive);
+                if(!a1.save()){
                     JOptionPane.showMessageDialog(rootPane, "Error: Data not saved");
                 }else {
                     JOptionPane.showConfirmDialog(rootPane, "Saved Successfully");
