@@ -22,7 +22,9 @@ public class Tickets {
     private int leg_no;
     private Connection conn;
     private boolean exist = false;
-
+    public Tickets(){
+        conn = DBConnect.connect();
+    }
     public Tickets(int psNo, String Plegno) {
         conn = DBConnect.connect();
         PreparedStatement pst = null;
