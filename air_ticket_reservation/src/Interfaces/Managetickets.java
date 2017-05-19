@@ -5,10 +5,12 @@
  */
 package Interfaces;
 
+import Classes.Flight;
 import Classes.FlightLeg;
 import Classes.Tickets;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDesktopPane;
@@ -28,19 +30,41 @@ public class Managetickets extends javax.swing.JInternalFrame {
         initComponents();
         FlightlegLoad();
         tableload();
+        jComboBox1.removeAllItems();
     }
     
+    private void loadseats(FlightLeg fl)
+    {
+        try {
+            Flight f = new Flight(fl.getFlight_no());
+            Tickets tk = new Tickets();
+            ResultSet rs = tk.getforleg(fl.getLeg_no());
+            Vector tickets =  new Vector();
+            for(int i=1; i<f.getMax_seats();i++){
+                tickets.addElement(i);
+            }
+            while(rs.next()){
+                tickets.remove(rs.getInt("seat_no"));
+            }
+            jComboBox1.removeAllItems();
+            for(Object s : tickets){
+                jComboBox1.addItem(s.toString());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ChooseSeat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * loading flight leg for upper combo box
      */
     private void FlightlegLoad() {		
         FlightLeg fl = new FlightLeg();		
         ResultSet rs = fl.getAll();		
-        jComboBox1.removeAllItems();		
+        jComboBox2.removeAllItems();		
         try {		
             while (rs.next()) {		
                 String legno = rs.getString("leg_no");
-                jComboBox1.addItem(legno);
+                jComboBox2.addItem(legno);
             }		
         } catch (SQLException ex) {		
             Logger.getLogger(Manageflights.class.getName()).log(Level.SEVERE, null, ex);		
@@ -53,6 +77,16 @@ public class Managetickets extends javax.swing.JInternalFrame {
     private void tableload() {
         Tickets t1 = new Tickets();
         ResultSet rs = t1.getAll();
+        if (rs == null) {
+            return;
+        }
+        jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+
+    }
+    
+    private void tableload(int fl) {
+        Tickets t1 = new Tickets();
+        ResultSet rs = t1.getforleg(fl);
         if (rs == null) {
             return;
         }
@@ -83,6 +117,9 @@ public class Managetickets extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jButton4 = new javax.swing.JButton();
+
+        setBorder(null);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -151,6 +188,13 @@ public class Managetickets extends javax.swing.JInternalFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jButton4.setText("Choose");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -176,7 +220,7 @@ public class Managetickets extends javax.swing.JInternalFrame {
                                 .addComponent(jComboBox1, 0, 138, Short.MAX_VALUE)
                                 .addComponent(jTextField2))
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,7 +231,9 @@ public class Managetickets extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(166, 166, 166))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addGap(80, 80, 80))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +243,9 @@ public class Managetickets extends javax.swing.JInternalFrame {
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(6, 6, 6)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -224,10 +272,10 @@ public class Managetickets extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
 
-        pack();
+        setBounds(-5, -35, 910, 735);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -277,11 +325,18 @@ public class Managetickets extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        tableload(Integer.parseInt(jComboBox2.getSelectedItem().toString()));
+        loadseats(new FlightLeg(Integer.parseInt(jComboBox2.getSelectedItem().toString())));
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
