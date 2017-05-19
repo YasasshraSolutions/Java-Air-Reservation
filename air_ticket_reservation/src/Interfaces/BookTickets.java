@@ -5,8 +5,19 @@
  */
 package Interfaces;
 
+import Classes.Airport;
+import Classes.FlightLeg;
 import Classes.Passenger;
+import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -14,14 +25,64 @@ import javax.swing.JDesktopPane;
  */
 public class BookTickets extends javax.swing.JInternalFrame {
     Passenger cus;
+    TreeMap<String, String> airports;
     /**
      * Creates new form BookTickets
      */
     public BookTickets(String pass) {
-        cus = new Passenger(pass); 
+        cus = new Passenger(pass);
         initComponents();
+        airports = new TreeMap<String, String>();
+        airportLoad();
+        tableload();
+    }
+    private void tableload() {
+        FlightLeg fl = new FlightLeg();
+        ResultSet rs = fl.getAll();
+        if (rs == null) {
+            return;
+        }
+        jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+
+        //set bg colour
+        jTable1.setBackground(Color.yellow);
+
+    }
+    
+    private void tableload(String pfrom_aid,String pto_aid) {
+        FlightLeg fl = new FlightLeg();
+        ResultSet rs = fl.getFromTo(pfrom_aid,pto_aid);
+        if (rs == null) {
+            return;
+        }
+        jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+
+        //set bg colour
+        jTable1.setBackground(Color.yellow);
+
+    }
+    private void airportLoad() {
+        Airport ap = new Airport();
+        ResultSet rs = ap.getAll();
+        jComboBox1.removeAllItems();
+        jComboBox2.removeAllItems();
+        try {
+            while (rs.next()) {
+                String name = rs.getString("name");
+                jComboBox1.addItem(name);
+                jComboBox2.addItem(name);
+                String aid = rs.getString("airportID");
+                airports.put(name, aid);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Manageflights.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
+    private String getAirportSelected(JComboBox box) {
+        String name = box.getSelectedItem().toString();
+        return airports.get(name);
+    }	
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,6 +102,8 @@ public class BookTickets extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+
+        setBorder(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Search Flight");
@@ -92,20 +155,35 @@ public class BookTickets extends javax.swing.JInternalFrame {
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jButton3.setText("Search");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(401, 401, 401)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)))
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(202, 202, 202)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -113,18 +191,6 @@ public class BookTickets extends javax.swing.JInternalFrame {
                 .addGap(56, 56, 56)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(139, 139, 139))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(282, 282, 282)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,15 +210,21 @@ public class BookTickets extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(222, Short.MAX_VALUE))
         );
 
-        pack();
+        setBounds(-5, -35, 910, 735);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int row = jTable1.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Error: No Flight selected");
+            return;
+        }
+        FlightLeg fl = new FlightLeg((int) jTable1.getValueAt(row, 0));
         JDesktopPane desktopPane = getDesktopPane();
-        ChooseSeat cs =new ChooseSeat(cus.getPass_no());
+        ChooseSeat cs =new ChooseSeat(cus.getPass_no(),fl.getLeg_no());
         desktopPane.add(cs);
         cs.setVisible(true);
         this.dispose();
@@ -160,8 +232,22 @@ public class BookTickets extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();// TODO add your handling code here:
+        JDesktopPane desktopPane = getDesktopPane();
+        Customerlogin cr = new Customerlogin(cus.getPass_no());
+        desktopPane.add(cr);
+        cr.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            String from_aid = this.getAirportSelected(jComboBox1);
+            String to_aid = this.getAirportSelected(jComboBox2);
+            this.tableload(from_aid, to_aid);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Error: values not selected properly");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
