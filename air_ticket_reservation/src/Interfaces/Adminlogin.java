@@ -113,7 +113,12 @@ public class Adminlogin extends javax.swing.JInternalFrame {
         jButton7.setBounds(500, 291, 159, 70);
 
         jButton8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton8.setText("Add Employee");
+        jButton8.setText("Manage LegClasses");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton8);
         jButton8.setBounds(291, 417, 159, 70);
 
@@ -186,6 +191,15 @@ public class Adminlogin extends javax.swing.JInternalFrame {
         ma.setVisible(true);
         this.dispose();  
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        JDesktopPane desktopPane = getDesktopPane();
+        Managelegclasses ma =new Managelegclasses();
+        desktopPane.add(ma);
+        ma.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton8ActionPerformed
         
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
