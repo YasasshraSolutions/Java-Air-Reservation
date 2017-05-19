@@ -75,7 +75,6 @@ public class Manageairline extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
@@ -177,12 +176,7 @@ public class Manageairline extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(513, 341, 143, 42);
-
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton4.setText("Deactivate Airline");
-        getContentPane().add(jButton4);
-        jButton4.setBounds(706, 341, 144, 42);
+        jButton3.setBounds(610, 340, 143, 42);
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton5.setText("Add Airline");
@@ -192,7 +186,7 @@ public class Manageairline extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(321, 341, 144, 42);
+        jButton5.setBounds(430, 340, 144, 42);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Manage Airline");
@@ -332,7 +326,6 @@ public class Manageairline extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
