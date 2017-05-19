@@ -145,6 +145,23 @@ public class FlightLeg {
             return null;
         }
     }
+    
+        public ResultSet getFromTo(String pfrom_ap,String pto_ap) {
+        PreparedStatement pst;
+        try {
+            String sql = "SELECT * FROM `flight_leg` WHERE `from_aID` = ? AND `to_aID` = ?";
+            pst = this.conn.prepareStatement(sql);
+            pst.setString(1, pfrom_ap);
+            pst.setString(2, pto_ap);
+            ResultSet rs;
+            rs = pst.executeQuery();
+            return rs;
+        } catch (SQLException e) {
+            System.out.println("Error : while excicuting prepared statement");
+            System.out.println(e);
+            return null;
+        }
+    }
         
     /**
      * @return the leg_no
