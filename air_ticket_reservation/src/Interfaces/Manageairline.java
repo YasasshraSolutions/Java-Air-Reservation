@@ -78,7 +78,10 @@ public class Manageairline extends javax.swing.JInternalFrame {
         jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel6 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(920, 735));
         getContentPane().setLayout(null);
@@ -103,26 +106,26 @@ public class Manageairline extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(25, 229, 38, 15);
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(117, 103, 150, 20);
+        jTextField1.setBounds(117, 103, 150, 22);
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(117, 148, 150, 20);
+        jTextField2.setBounds(117, 148, 150, 22);
         getContentPane().add(jTextField3);
-        jTextField3.setBounds(117, 189, 150, 20);
+        jTextField3.setBounds(117, 189, 150, 22);
 
         v1.setForeground(new java.awt.Color(255, 0, 0));
         v1.setText("*");
         getContentPane().add(v1);
-        v1.setBounds(87, 109, 6, 14);
+        v1.setBounds(87, 109, 8, 16);
 
         v2.setForeground(new java.awt.Color(255, 0, 0));
         v2.setText("*");
         getContentPane().add(v2);
-        v2.setBounds(106, 151, 6, 14);
+        v2.setBounds(106, 151, 8, 16);
 
         v3.setForeground(new java.awt.Color(255, 0, 0));
         v3.setText("*");
         getContentPane().add(v3);
-        v3.setBounds(67, 192, 6, 14);
+        v3.setBounds(67, 192, 8, 16);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -193,12 +196,36 @@ public class Manageairline extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(434, 11, 189, 37);
         getContentPane().add(jCheckBox1);
-        jCheckBox1.setBounds(117, 229, 21, 21);
+        jCheckBox1.setBounds(117, 229, 25, 25);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/air-new-airline.png"))); // NOI18N
-        jLabel6.setText("jLabel6");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(-10, 0, 920, 710);
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton6.setText("Add Airline");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton6);
+        jButton6.setBounds(430, 340, 144, 42);
+
+        jButton7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton7.setText("Add Airline");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton7);
+        jButton7.setBounds(430, 340, 144, 42);
+
+        jButton8.setText("Print");
+        getContentPane().add(jButton8);
+        jButton8.setBounds(280, 335, 120, 30);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/air-new-airline.png"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(0, 0, 900, 700);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -321,19 +348,30 @@ public class Manageairline extends javax.swing.JInternalFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
