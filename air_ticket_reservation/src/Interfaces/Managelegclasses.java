@@ -5,6 +5,17 @@
  */
 package Interfaces;
 
+import Classes.LegClasses;
+import Classes.LegClasses;
+import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author FRANKENSTEIN
@@ -16,6 +27,41 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
      */
     public Managelegclasses() {
         initComponents();
+        tableload();
+        legnoLoad();
+    }
+    
+        /**
+     * Genarate data for jtable
+     */
+    private void tableload() {
+        LegClasses lc = new LegClasses();
+        ResultSet rs = lc.getAll();
+        if (rs == null) {
+            return;
+        }
+        jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+
+    }
+    
+    private void resetFeilds() {
+        jTextField1.setText("");
+        jTextField2.setText("");				
+        jComboBox1.setSelectedItem(null);				
+    }
+    
+    private void legnoLoad() {		
+        LegClasses lc1 = new LegClasses();		
+        ResultSet rs = lc1.getAll();		
+        jComboBox1.removeAllItems();		
+        try {		
+            while (rs.next()) {		
+                String name = rs.getString("leg_no");		
+                jComboBox1.addItem(name);			
+            }		
+        } catch (SQLException ex) {		
+            Logger.getLogger(Manageflights.class.getName()).log(Level.SEVERE, null, ex);		
+        }		
     }
 
     /**
@@ -40,7 +86,7 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
 
         getContentPane().setLayout(null);
 
@@ -55,10 +101,15 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
                 "Flight Leg", "Class", "Price"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(424, 102, 452, 100);
+        jScrollPane1.setBounds(380, 80, 452, 100);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(jComboBox1);
@@ -80,9 +131,9 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(120, 190, 125, 20);
+        jTextField1.setBounds(120, 190, 125, 22);
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(120, 140, 125, 20);
+        jTextField2.setBounds(120, 140, 125, 22);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Class");
@@ -95,8 +146,13 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
         jButton1.setBounds(124, 243, 65, 23);
 
         jButton2.setText("Add Class");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
-        jButton2.setBounds(480, 330, 110, 35);
+        jButton2.setBounds(440, 310, 110, 35);
 
         jButton3.setText("Edit Class");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +161,7 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(600, 330, 110, 35);
+        jButton3.setBounds(560, 310, 110, 35);
 
         jButton4.setText("Delete Class");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -114,16 +170,21 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(720, 330, 110, 35);
+        jButton4.setBounds(680, 310, 110, 35);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Manage Leg Classes");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(362, 20, 180, 22);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/air-new-flightleg.png"))); // NOI18N
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(-10, 0, 910, 710);
+        jButton5.setText("jButton5");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton5);
+        jButton5.setBounds(750, 40, 79, 25);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -134,11 +195,105 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+         int d = JOptionPane.showConfirmDialog(null, "Press Yes to update");
+
+        if (d == 0) {
+
+            int row = jTable1.getSelectedRow();
+            if (row == -1) {
+                JOptionPane.showMessageDialog(rootPane, "Error: no row selected");
+                return;
+            }
+            LegClasses l1 = new LegClasses(Integer.parseInt(jTable1.getValueAt(row, 0).toString()),Integer.parseInt(jTable1.getValueAt(row, 1).toString()));
+            Integer legno = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+            Integer class_ = Integer.parseInt(jTextField2.getText());
+            Float price = Float.parseFloat(jTextField1.getText());
+            boolean validity = true;
+            
+            if(legno==null)
+            {
+                validity = false;
+            }
+            if(class_ == null|| class_>3 || class_<1){
+                validity = false;
+            }
+            if(price == null|| price<0){
+                validity = false;
+            }
+            
+            if(validity==true){
+                LegClasses l2 = new LegClasses();
+                l2.setLeg_no(legno);
+                l2.setClass_(class_);
+                l2.setPrice(price);
+                if (l2.save()) {
+                    JOptionPane.showMessageDialog(rootPane, "Data saved successfully");
+                    tableload();
+                } else {
+                    return;
+                }
+            }
+            
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        JDesktopPane desktopPane = getDesktopPane();
+        Adminlogin al = new Adminlogin();
+        desktopPane.add(al);
+        al.setVisible(true);
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int row = jTable1.getSelectedRow();
+        if (row == -1) {
+            return;
+        }
+        LegClasses l1 = new LegClasses(Integer.parseInt(jTable1.getValueAt(row, 0).toString()),Integer.parseInt(jTable1.getValueAt(row, 1).toString()));
+        jTextField1.setText(Float.toString(l1.getPrice()));
+        jTextField2.setText(Integer.toString(l1.getClass_()));
+        jComboBox1.setSelectedItem(l1.getLeg_no());
+        
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+            Integer legno = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+            Integer class_ = Integer.parseInt(jTextField2.getText());
+            Float price = Float.parseFloat(jTextField1.getText());
+            boolean validity = true;
+            
+            if(legno==null)
+            {
+                validity = false;
+            }
+            if(class_ == null|| class_>3 || class_<1){
+                validity = false;
+            }
+            if(price == null|| price<0){
+                validity = false;
+            }
+            
+            if(validity==true){
+                LegClasses l2 = new LegClasses();
+                l2.setLeg_no(legno);
+                l2.setClass_(class_);
+                l2.setPrice(price);
+                if (l2.save()) {
+                    JOptionPane.showMessageDialog(rootPane, "Data saved successfully");
+                    tableload();
+                } else {
+                    return;
+                }
+            }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -146,12 +301,12 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
