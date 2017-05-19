@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import Classes.FlightLeg;
 import Classes.LegClasses;
 import Classes.LegClasses;
 import java.awt.Color;
@@ -51,7 +52,7 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
     }
     
     private void legnoLoad() {		
-        LegClasses lc1 = new LegClasses();		
+        FlightLeg lc1 = new FlightLeg();		
         ResultSet rs = lc1.getAll();		
         jComboBox1.removeAllItems();		
         try {		
@@ -178,14 +179,14 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(362, 20, 180, 22);
 
-        jButton5.setText("jButton5");
+        jButton5.setText("Back");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(810, 40, 79, 25);
+        jButton5.setBounds(810, 35, 80, 30);
 
         setBounds(-5, -35, 910, 735);
     }// </editor-fold>//GEN-END:initComponents
