@@ -83,6 +83,24 @@ public class LegClasses {
             return false;
         }
     }
+        
+    /**
+     * getall function
+     */
+    public ResultSet getAll() {
+        PreparedStatement pst;
+        try {
+            String sql = "SELECT * FROM leg_classes";
+            pst = this.conn.prepareStatement(sql);
+            ResultSet rs;
+            rs = pst.executeQuery();
+            return rs;
+        } catch (SQLException e) {
+            System.out.println("Error : while excicuting prepared statement");
+            System.out.println(e);
+            return null;
+        }
+    }
     /**
      * @return the leg_no
      */
