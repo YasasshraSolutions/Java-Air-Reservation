@@ -34,6 +34,7 @@ public class ChooseSeat extends javax.swing.JInternalFrame {
         cus = new Passenger(pass);
         fl = new FlightLeg(pleg);
         this.loadSeats();
+        this.setPriceVisibility(false);
     }
     
     private void setPriceVisibility(boolean v){
