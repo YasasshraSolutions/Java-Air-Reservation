@@ -93,6 +93,7 @@ public class Managecustomer extends javax.swing.JInternalFrame {
         status = new javax.swing.JLabel();
         chckbox = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         getContentPane().setLayout(null);
@@ -161,7 +162,7 @@ public class Managecustomer extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(taddress);
-        taddress.setBounds(136, 257, 149, 20);
+        taddress.setBounds(136, 257, 149, 22);
 
         lname.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lname.setText("Last Name");
@@ -179,7 +180,7 @@ public class Managecustomer extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(tfname);
-        tfname.setBounds(136, 125, 149, 20);
+        tfname.setBounds(136, 125, 149, 22);
 
         tlname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,7 +188,7 @@ public class Managecustomer extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(tlname);
-        tlname.setBounds(136, 190, 149, 20);
+        tlname.setBounds(136, 190, 149, 22);
 
         tel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tel.setText("Contact Number");
@@ -200,7 +201,7 @@ public class Managecustomer extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(ttel);
-        ttel.setBounds(136, 331, 149, 20);
+        ttel.setBounds(136, 331, 149, 22);
 
         dob.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         dob.setText("DOB");
@@ -212,7 +213,7 @@ public class Managecustomer extends javax.swing.JInternalFrame {
         getContentPane().add(pno);
         pno.setBounds(10, 451, 74, 15);
         getContentPane().add(tpassno);
-        tpassno.setBounds(136, 449, 149, 20);
+        tpassno.setBounds(136, 449, 149, 22);
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton5.setText("Reset");
@@ -224,54 +225,63 @@ public class Managecustomer extends javax.swing.JInternalFrame {
         getContentPane().add(jButton5);
         jButton5.setBounds(295, 520, 88, 23);
         getContentPane().add(ddate);
-        ddate.setBounds(136, 393, 149, 22);
+        ddate.setBounds(136, 393, 149, 24);
 
         v1.setForeground(new java.awt.Color(255, 0, 0));
         v1.setText("*");
         getContentPane().add(v1);
-        v1.setBounds(96, 128, 26, 14);
+        v1.setBounds(96, 128, 26, 16);
 
         v2.setForeground(new java.awt.Color(255, 0, 0));
         v2.setText("*");
         getContentPane().add(v2);
-        v2.setBounds(81, 193, 26, 14);
+        v2.setBounds(81, 193, 26, 16);
 
         v3.setForeground(new java.awt.Color(255, 0, 0));
         v3.setText("*");
         getContentPane().add(v3);
-        v3.setBounds(67, 260, 26, 14);
+        v3.setBounds(67, 260, 26, 16);
 
         v4.setForeground(new java.awt.Color(255, 0, 0));
         v4.setText("*");
         getContentPane().add(v4);
-        v4.setBounds(116, 334, 6, 14);
+        v4.setBounds(116, 334, 8, 16);
 
         v5.setForeground(new java.awt.Color(255, 0, 0));
         v5.setText("*");
         getContentPane().add(v5);
-        v5.setBounds(76, 394, 26, 14);
+        v5.setBounds(76, 394, 26, 16);
 
         v6.setForeground(new java.awt.Color(255, 0, 0));
         v6.setText("*");
         getContentPane().add(v6);
-        v6.setBounds(96, 452, 26, 14);
+        v6.setBounds(96, 452, 26, 16);
 
         status.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         status.setText("Status");
         getContentPane().add(status);
         status.setBounds(10, 514, 41, 15);
         getContentPane().add(chckbox);
-        chckbox.setBounds(136, 514, 21, 21);
+        chckbox.setBounds(136, 514, 25, 25);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Manage Customers");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(334, 27, 173, 22);
 
+        jButton1.setText("Print");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(530, 520, 59, 25);
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/air-new-customer.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(-10, 0, 910, 710);
+        jLabel2.setBounds(0, 0, 900, 700);
 
         setBounds(-5, -35, 910, 735);
     }// </editor-fold>//GEN-END:initComponents
@@ -399,6 +409,10 @@ public class Managecustomer extends javax.swing.JInternalFrame {
         chckbox.setSelected(p1.isActive());
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel address;
@@ -406,6 +420,7 @@ public class Managecustomer extends javax.swing.JInternalFrame {
     private org.jdesktop.swingx.JXDatePicker ddate;
     private javax.swing.JLabel dob;
     private javax.swing.JLabel fname;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
