@@ -32,7 +32,7 @@ public class LegClasses {
         conn = DBConnect.connect();
         PreparedStatement pst = null;
         try {
-            String sql = "SELECT * FROM `leg_classes` WHERE `leg_no`=?,`class`=?";
+            String sql = "SELECT * FROM `leg_classes` WHERE `leg_no`=? AND `class`=?";
             pst = conn.prepareStatement(sql);
             pst.setInt(1, pLeg_no);
             pst.setInt(2, pclass_);

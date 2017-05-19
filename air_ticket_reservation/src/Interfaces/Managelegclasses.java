@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import Classes.FlightLeg;
 import Classes.LegClasses;
 import Classes.LegClasses;
 import java.awt.Color;
@@ -51,7 +52,7 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
     }
     
     private void legnoLoad() {		
-        LegClasses lc1 = new LegClasses();		
+        FlightLeg lc1 = new FlightLeg();		
         ResultSet rs = lc1.getAll();		
         jComboBox1.removeAllItems();		
         try {		
@@ -87,6 +88,7 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
         jButton4 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setBorder(null);
         getContentPane().setLayout(null);
@@ -132,9 +134,9 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(120, 190, 125, 22);
+        jTextField1.setBounds(120, 190, 125, 20);
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(120, 140, 125, 22);
+        jTextField2.setBounds(120, 140, 125, 20);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Class");
@@ -178,14 +180,19 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(362, 20, 180, 22);
 
-        jButton5.setText("jButton5");
+        jButton5.setText("Back");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(810, 40, 79, 25);
+        jButton5.setBounds(810, 35, 80, 30);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Interfaces/air-new-empty.png"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, 0, 910, 710);
 
         setBounds(-5, -35, 910, 735);
     }// </editor-fold>//GEN-END:initComponents
@@ -308,6 +315,7 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
