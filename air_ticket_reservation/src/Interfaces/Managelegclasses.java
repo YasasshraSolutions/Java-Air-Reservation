@@ -88,6 +88,7 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
 
+        setBorder(null);
         getContentPane().setLayout(null);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -109,7 +110,7 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(380, 80, 452, 100);
+        jScrollPane1.setBounds(380, 80, 510, 100);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(jComboBox1);
@@ -152,7 +153,7 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(440, 310, 110, 35);
+        jButton2.setBounds(380, 210, 110, 35);
 
         jButton3.setText("Edit Class");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -161,7 +162,7 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(560, 310, 110, 35);
+        jButton3.setBounds(510, 210, 110, 35);
 
         jButton4.setText("Delete Class");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +171,7 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(680, 310, 110, 35);
+        jButton4.setBounds(650, 210, 110, 35);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Manage Leg Classes");
@@ -184,9 +185,9 @@ public class Managelegclasses extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(750, 40, 79, 25);
+        jButton5.setBounds(810, 40, 79, 25);
 
-        pack();
+        setBounds(-5, -35, 910, 735);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
