@@ -286,7 +286,7 @@ public class Payment extends javax.swing.JInternalFrame {
         Integer box8 = Integer.parseInt(jTextField8.getText());
         
         if((fname.matches(pattern1))&&(box1.length()==4)&&(box2.length()==4)&&(box3.length()==4)&&(box4.length()==4)&&(box5.length()==3)&&(box7<12)&&(box8>17)) {
-            JOptionPane.showMessageDialog(rootPane, "Cannot update non exhisting airport");   
+            JOptionPane.showMessageDialog(rootPane, "payment detils wrong");   
         
             JDesktopPane desktopPane = getDesktopPane();
             Customerlogin cl =new Customerlogin(cus.getPass_no());

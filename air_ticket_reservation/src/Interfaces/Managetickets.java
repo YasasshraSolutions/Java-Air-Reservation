@@ -84,9 +84,9 @@ public class Managetickets extends javax.swing.JInternalFrame {
 
     }
     
-    private void tableload(int fl) {
+    private void tableload2(FlightLeg ft) {
         Tickets t1 = new Tickets();
-        ResultSet rs = t1.getforleg(fl);
+        ResultSet rs = t1.getforleg(ft.getLeg_no());
         if (rs == null) {
             return;
         }
@@ -113,7 +113,6 @@ public class Managetickets extends javax.swing.JInternalFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -168,14 +167,6 @@ public class Managetickets extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Manage Tickets");
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jButton2.setText("Delete Tickets");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jButton3.setText("Edit Tickets");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -222,10 +213,7 @@ public class Managetickets extends javax.swing.JInternalFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(57, 57, 57)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -269,18 +257,12 @@ public class Managetickets extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(141, 141, 141)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(210, Short.MAX_VALUE))
         );
 
         setBounds(-5, -35, 910, 735);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -293,12 +275,12 @@ public class Managetickets extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(rootPane, "Error: no row selected");
                 return;
             }
-            Tickets t1 = new Tickets(Integer.parseInt(jTable1.getValueAt(row, 2).toString()),Integer.parseInt(jTable1.getValueAt(row, 3).toString()));
-            String pass_no = jTextField1.getText();
-            String seat_no = jComboBox1.getSelectedItem().toString();
-            Integer stno = Integer.parseInt(seat_no);
-            Integer cls = Integer.parseInt(jTextField2.getText());
-            
+            Tickets t1 = new Tickets(Integer.parseInt(jTable1.getValueAt(row, 0).toString()),Integer.parseInt(jTable1.getValueAt(row, 3).toString()));
+            t1.setPass_no(jTextField1.getText());
+            String seat_no = (jComboBox1.getSelectedItem().toString());
+            t1.setSeat_no(Integer.parseInt(seat_no));
+            t1.setClass_(Integer.parseInt(jTextField2.getText()));
+            t1.save();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -317,7 +299,7 @@ public class Managetickets extends javax.swing.JInternalFrame {
         if (row == -1) {
             return;
         }
-        Tickets t1 = new Tickets(Integer.parseInt(jTable1.getValueAt(row, 2).toString()),Integer.parseInt(jTable1.getValueAt(row, 3).toString()) );
+        Tickets t1 = new Tickets(Integer.parseInt(jTable1.getValueAt(row, 0).toString()),Integer.parseInt(jTable1.getValueAt(row, 3).toString()) );
         jTextField1.setText(t1.getPass_no());
         jComboBox1.setSelectedItem(t1.getSeat_no());
         jTextField2.setText(Integer.toString(t1.getClass_()));
@@ -327,14 +309,14 @@ public class Managetickets extends javax.swing.JInternalFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        tableload(Integer.parseInt(jComboBox2.getSelectedItem().toString()));
+        tableload2(new FlightLeg(Integer.parseInt(jComboBox2.getSelectedItem().toString())));
         loadseats(new FlightLeg(Integer.parseInt(jComboBox2.getSelectedItem().toString())));
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;

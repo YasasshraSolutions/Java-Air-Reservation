@@ -151,7 +151,7 @@ public class Tickets {
     public ResultSet getforleg(int  pleg_no) {
         PreparedStatement pst;
         try {
-            String sql = "SELECT * FROM `tickets` WHERE leg_no = ?  ORDER BY `seat_no` ASC";
+            String sql = "SELECT * FROM `tickets` WHERE leg_no = ?";
             pst = this.conn.prepareStatement(sql);
             pst.setInt(1,pleg_no);
             ResultSet rs;
